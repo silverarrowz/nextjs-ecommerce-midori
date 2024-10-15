@@ -1,9 +1,6 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
 import ProductCard from '@/components/ProductCard'
 import LineSvg from '@/lib/LineSvg'
-import { Product } from '@/payload-types'
-import Image from 'next/image'
+import { Product } from '@/app/(payload)/payload-types'
 
 export default async function Page() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products`)

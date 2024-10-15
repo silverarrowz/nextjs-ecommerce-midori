@@ -21,13 +21,14 @@ const Header = () => {
       <nav className="hidden lg:block">
         <ul className="flex *:pr-8 justify-between w-max transition-all ">
           <li className="relative h-20 -mb-14" onMouseLeave={() => setDropdownOpen(false)}>
-            <p
+            <Link
+              href={'/shop'}
               className="group hover:opacity-70 cursor-pointer"
               onMouseEnter={() => setDropdownOpen(true)}
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               Каталог
-            </p>
+            </Link>
             <DropdownMenu isOpen={dropdownOpen} />
           </li>
           <li>
