@@ -1,8 +1,8 @@
 interface FeaturedItemProps {
-  title: string;
-  price: number;
-  image: string;
-  amount?: string;
+  title: string
+  price: number
+  image: string
+  amount?: string
 }
 
 const FeaturedItem = ({ image, price, title, amount }: FeaturedItemProps) => {
@@ -55,7 +55,7 @@ const FeaturedItem = ({ image, price, title, amount }: FeaturedItemProps) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FeaturedItem;
+export default FeaturedItem
