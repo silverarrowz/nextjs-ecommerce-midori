@@ -5,7 +5,6 @@ import '@payloadcms/next/css'
 import { RootLayout } from '@payloadcms/next/layouts'
 import React from 'react'
 
-import './custom.scss'
 import { importMap } from './admin/importMap'
 
 type Args = {
