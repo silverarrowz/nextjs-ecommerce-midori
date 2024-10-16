@@ -37,19 +37,19 @@ const Page = async ({ params }: PageProps) => {
               <Link href={breadcrumb.href} className="font-light text-sm ">
                 {breadcrumb.name}
               </Link>
-              {i !== BREADCRUMBS.length - 1 ? (
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="ml-2 h-5 w-5 flex-shrink-0"
-                >
-                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-                </svg>
-              ) : null}
+
+              <svg
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+                className="ml-2 h-5 w-5 flex-shrink-0"
+              >
+                <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+              </svg>
             </div>
           </li>
         ))}
+        <li className="text-sm">{product.name}</li>
       </ol>
       <div className="flex flex-col md:flex-row gap-10 px-10 py-16">
         <div className="mx-auto w-full h-full md:w-1/2">
@@ -68,7 +68,7 @@ const Page = async ({ params }: PageProps) => {
             {product.name}
           </h1>
           <p className="font-light">{product.price} руб.</p>
-          <p>{product.description}</p>
+          <p className="text-heading opacity-80">{product.description}</p>
           <AddToCartButton product={product} showCounter />
         </div>
       </div>

@@ -7,7 +7,33 @@ export const Users: CollectionConfig = {
   },
   auth: true,
   fields: [
-    // Email added by default
-    // Add more fields as needed
+    {
+      label: 'Cart',
+      name: 'cart',
+      type: 'group',
+      fields: [
+        {
+          name: 'items',
+          label: 'Items',
+          type: 'array',
+          interfaceName: 'CartItems',
+          fields: [
+            {
+              name: 'product',
+              type: 'relationship',
+              relationTo: 'products',
+            },
+            {
+              name: 'quantity',
+              type: 'number',
+              min: 0,
+              admin: {
+                step: 1,
+              },
+            },
+          ],
+        },
+      ],
+    },
   ],
 }

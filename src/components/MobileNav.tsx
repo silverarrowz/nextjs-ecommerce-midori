@@ -16,16 +16,16 @@ const MobileNav = () => {
             flex flex-col gap-4 p-4 *:hover:*:opacity-70"
             >
               <li>
-                <Link href={"/"}>Каталог</Link>
+                <Link href={"/shop"}>Каталог</Link>
               </li>
               <li>
-                <Link href={"/about"}>О нас</Link>
+                <Link href={"/#about"}>О нас</Link>
               </li>
               <li>
-                <Link href={"/contacts"}>Контакты</Link>
+                <Link href={"/#contacts"}>Контакты</Link>
               </li>
               <li>
-                <Link href={"/reviews"}>Отзывы</Link>
+                <Link href={"/#reviews"}>Отзывы</Link>
               </li>
             </ul>
           </nav>

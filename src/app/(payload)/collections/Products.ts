@@ -29,7 +29,7 @@ const Products: CollectionConfig = {
     {
       name: 'amount',
       type: 'text',
-      label: 'Количество',
+      label: 'Количество (например, в граммах)',
     },
     {
       name: 'image',

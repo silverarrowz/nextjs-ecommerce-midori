@@ -12,7 +12,9 @@ const Footer = () => {
       <div className="flex flex-col gap-y-20 md:flex-row justify-between">
         <div className="flex flex-col gap-16 sm:gap-28">
           <div className="flex flex-col gap-8">
-            <h3 className="text-3xl sm:text-4xl font-serif">Мы в соцсетях</h3>
+            <h3 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-serif">
+              Мы в соцсетях
+            </h3>
             <div className="flex gap-2 items-center *:hover:*:opacity-70">
               <Link href={'/'}>
                 <FaInstagram size={28} />
@@ -52,8 +54,8 @@ const Footer = () => {
         </div>
         <div className="grid grid-cols-2">
           <div className="flex flex-col gap-8">
-            <h3 className="text-2xl sm:text-4xl font-serif">Магазин</h3>
-            <ul className="flex flex-col gap-2 *:hover:*:opacity-60  *:tracking-tighter">
+            <h3 className="text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-serif">Магазин</h3>
+            <ul className="flex flex-col gap-2 *:hover:*:opacity-60  *:tracking-tighter md:text-sm lg:text-base">
               <li>
                 <Link href={'/shop'}>Моти</Link>
               </li>
@@ -70,8 +72,8 @@ const Footer = () => {
             </ul>
           </div>
           <div className="flex flex-col gap-8">
-            <h3 className="text-2xl sm:text-4xl font-serif">Инфо</h3>
-            <ul className="gap-2 flex flex-col *:hover:*:opacity-60 *:tracking-tighter">
+            <h3 className="text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-serif">Инфо</h3>
+            <ul className="gap-2 flex flex-col *:hover:*:opacity-60 *:tracking-tighter md:text-sm lg:text-base">
               <li>
                 <Link href={'/'}>Контакты</Link>
               </li>
