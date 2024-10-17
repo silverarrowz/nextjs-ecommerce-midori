@@ -7,7 +7,8 @@ import { useCart } from '@/app/context/Cart/CartContext'
 
 const Cart = () => {
   // const { items, removeFromCart, removeOne, addOne } = useCartStore()
-  const { cartIsEmpty, deleteItemFromCart, hasInitializedCart, cart, addItemToCart } = useCart()
+  const { cartIsEmpty, deleteItemFromCart, hasInitializedCart, cart, addOneItem, deleteOneItem } =
+    useCart()
 
   return (
     <div>
@@ -62,7 +63,7 @@ const Cart = () => {
                       <div className="flex justify-between w-full">
                         <div className="flex items-center h-fit gap-2 self-center">
                           <button
-                            // onClick={() => removeOne(item.id)}
+                            onClick={() => deleteOneItem(product)}
                             disabled={item.quantity === 1}
                             className="text-3xl  leading-3 bg-background-light rounded-full p-2 disabled:bg-slate-200 disabled:text-slate-400"
                           >
@@ -70,7 +71,7 @@ const Cart = () => {
                           </button>
                           {item.quantity}
                           <button
-                            // onClick={() => addOne(item.id)}
+                            onClick={() => addOneItem(product)}
                             className="text-3xl leading-3 bg-background-light p-2 rounded-full"
                           >
                             <FaPlus size={12} />

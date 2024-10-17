@@ -17,6 +17,8 @@ import { CartItem, cartReducer } from './reducer'
 export type CartContextType = {
   cart: User['cart']
   addItemToCart: (item: CartItem) => void
+  addOneItem: (product: Product) => void
+  deleteOneItem: (product: Product) => void
   deleteItemFromCart: (product: Product) => void
   cartIsEmpty: boolean | undefined
   clearCart: () => void
@@ -226,6 +228,20 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }, [])
 
+  const addOneItem = useCallback((incomingProduct: Product) => {
+    dispatchCart({
+      type: 'ADD_ONE',
+      payload: incomingProduct,
+    })
+  }, [])
+
+  const deleteOneItem = useCallback((incomingProduct: Product) => {
+    dispatchCart({
+      type: 'DELETE_ONE',
+      payload: incomingProduct,
+    })
+  }, [])
+
   const deleteItemFromCart = useCallback((incomingProduct: Product) => {
     dispatchCart({
       type: 'DELETE_ITEM',
@@ -268,6 +284,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         cart,
         addItemToCart,
+        addOneItem,
+        deleteOneItem,
         deleteItemFromCart,
         cartIsEmpty: hasInitializedCart && !arrayHasItems(cart?.items),
         clearCart,

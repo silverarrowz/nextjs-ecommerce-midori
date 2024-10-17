@@ -19,6 +19,14 @@ type CartAction =
       payload: CartItem
     }
   | {
+      type: 'ADD_ONE'
+      payload: Product
+    }
+  | {
+      type: 'DELETE_ONE'
+      payload: Product
+    }
+  | {
       type: 'DELETE_ITEM'
       payload: Product
     }
@@ -89,6 +97,52 @@ export const cartReducer = (cart: CartType, action: CartAction): CartType => {
       return {
         ...cart,
         items: withAddedItem,
+      }
+    }
+
+    case 'ADD_ONE': {
+      const { payload: incomingProduct } = action
+      let withAddedItem = [...(cart?.items || [])]
+
+      const indexInCart = cart?.items?.findIndex(({ product }) =>
+        typeof product === 'string'
+          ? product === incomingProduct.id
+          : product?.id === incomingProduct.id,
+      )
+
+      if (typeof indexInCart === 'number' && indexInCart > -1) {
+        withAddedItem[indexInCart] = {
+          ...withAddedItem[indexInCart],
+          quantity: (withAddedItem[indexInCart].quantity || 0) + 1,
+        }
+      }
+
+      return {
+        ...cart,
+        items: withAddedItem,
+      }
+    }
+
+    case 'DELETE_ONE': {
+      const { payload: incomingProduct } = action
+      const withDeletedItem = [...(cart?.items || [])]
+
+      const indexInCart = cart?.items?.findIndex(({ product }) =>
+        typeof product === 'string'
+          ? product === incomingProduct.id
+          : product?.id === incomingProduct.id,
+      )
+
+      if (typeof indexInCart === 'number' && indexInCart > -1) {
+        withDeletedItem[indexInCart] = {
+          ...withDeletedItem[indexInCart],
+          quantity: (withDeletedItem[indexInCart].quantity || 0) - 1,
+        }
+      }
+
+      return {
+        ...cart,
+        items: withDeletedItem,
       }
     }
 
