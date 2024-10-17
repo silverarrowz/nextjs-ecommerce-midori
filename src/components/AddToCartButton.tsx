@@ -3,7 +3,8 @@
 import { cn } from '@/lib/utils'
 import { Product } from '@/app/(payload)/payload-types'
 import { useState } from 'react'
-import { useCartStore } from '@/app/zustand/use-cart'
+import { useCart } from '@/app/context/Cart/CartContext'
+// import { useCartStore } from '@/app/zustand/use-cart'
 
 interface AddToCartButtonProps {
   className?: string
@@ -15,7 +16,8 @@ const AddToCartButton = ({ className, product, showCounter = false }: AddToCartB
   const [quantity, setQuantity] = useState(1)
   const [isAdded, setIsAdded] = useState(false)
 
-  const { addToCart } = useCartStore()
+  // const { addToCart } = useCartStore()
+  const { addItemToCart } = useCart()
 
   return (
     <div>
@@ -31,7 +33,8 @@ const AddToCartButton = ({ className, product, showCounter = false }: AddToCartB
       />
       <button
         onClick={() => {
-          addToCart(product, quantity)
+          // addToCart(product, quantity)
+          addItemToCart({ product, quantity })
           setQuantity(1)
           setIsAdded(true)
           setTimeout(() => {

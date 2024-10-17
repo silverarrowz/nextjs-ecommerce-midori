@@ -4,6 +4,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { UserProvider } from '../context/UserContext'
+import { CartProvider } from '../context/Cart/CartContext'
 
 const sans = Mulish({
   weight: ['300', '400', '700'],
@@ -32,9 +33,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable} font-sans antialiased`}>
         <UserProvider>
-          <Header />
-          {children}
-          <Footer />
+          <CartProvider>
+            <Header />
+            {children}
+            <Footer />
+          </CartProvider>
         </UserProvider>
       </body>
     </html>

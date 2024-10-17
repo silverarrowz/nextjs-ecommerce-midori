@@ -1,11 +1,13 @@
-import { useCartStore } from '@/app/zustand/use-cart'
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from './ui/sheet'
+// import { useCartStore } from '@/app/zustand/use-cart'
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from './ui/sheet'
 import { GrShop } from 'react-icons/gr'
 import Link from 'next/link'
 import { FaMinus, FaPlus, FaRegTrashAlt } from 'react-icons/fa'
+import { useCart } from '@/app/context/Cart/CartContext'
 
 const Cart = () => {
-  const { items, removeFromCart, removeOne, addOne } = useCartStore()
+  // const { items, removeFromCart, removeOne, addOne } = useCartStore()
+  const { cartIsEmpty, deleteItemFromCart, hasInitializedCart, cart, addItemToCart } = useCart()
 
   return (
     <div>
@@ -18,7 +20,79 @@ const Cart = () => {
           <SheetHeader>
             <h2 className="font-serif text-center text-3xl mb-6">Корзина</h2>
           </SheetHeader>
-          {items.length === 0 ? (
+          {cartIsEmpty ? (
+            <p>
+              Ваша корзина пуста. <Link href={'/shop'}>Вернуться к покупкам</Link>
+            </p>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {cart?.items?.map((item, index) => {
+                if (typeof item.product === 'object') {
+                  const {
+                    quantity,
+                    product,
+                    product: { id, name, image, price },
+                  } = item
+
+                  return (
+                    <div key={id} className="flex gap-4 bg-white py-2 px-4 rounded-lg">
+                      <SheetClose asChild>
+                        <Link href={`/product/${id}`} className="flex-shrink-0">
+                          <img
+                            src={typeof image === 'string' ? image : image!.url!}
+                            alt={name}
+                            className="w-[100px]"
+                          />
+                        </Link>
+                      </SheetClose>
+
+                      <div className="flex flex-col gap-1 flex-shrink-0">
+                        <SheetClose asChild>
+                          <Link href={`/product/${id}`} className="flex-shrink-0">
+                            <h3 className="text-heading-dark">{name}</h3>
+                          </Link>
+                        </SheetClose>
+
+                        <p className="text-sm text-heading opacity-80">Количество: {quantity}</p>
+                        <p className="text-sm text-heading opacity-80">
+                          Стоимость:{' '}
+                          <span className="font-bold opacity-100">{price * quantity}</span> руб.
+                        </p>
+                      </div>
+                      <div className="flex justify-between w-full">
+                        <div className="flex items-center h-fit gap-2 self-center">
+                          <button
+                            // onClick={() => removeOne(item.id)}
+                            disabled={item.quantity === 1}
+                            className="text-3xl  leading-3 bg-background-light rounded-full p-2 disabled:bg-slate-200 disabled:text-slate-400"
+                          >
+                            <FaMinus size={12} />
+                          </button>
+                          {item.quantity}
+                          <button
+                            // onClick={() => addOne(item.id)}
+                            className="text-3xl leading-3 bg-background-light p-2 rounded-full"
+                          >
+                            <FaPlus size={12} />
+                          </button>
+                        </div>
+                        <button
+                          onClick={() => {
+                            deleteItemFromCart(product)
+                            console.log('click')
+                          }}
+                        >
+                          <FaRegTrashAlt size={20} />
+                        </button>
+                      </div>
+                    </div>
+                  )
+                }
+                return null
+              })}
+            </div>
+          )}
+          {/* {items.length === 0 ? (
             <p>
               Ваша корзина пуста. <Link href={'/shop'}>Вернуться к покупкам</Link>
             </p>
@@ -87,7 +161,7 @@ const Cart = () => {
                 К оплате
               </button>
             </div>
-          )}
+          )} */}
         </SheetContent>
       </Sheet>
     </div>
