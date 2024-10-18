@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { RxHamburgerMenu } from "react-icons/rx";
+import Link from 'next/link'
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from './ui/sheet'
+import { RxHamburgerMenu } from 'react-icons/rx'
 
 const MobileNav = () => {
   return (
@@ -9,30 +9,38 @@ const MobileNav = () => {
         <SheetTrigger>
           <RxHamburgerMenu className="" size={24} />
         </SheetTrigger>
-        <SheetContent side={"left"} className="w-full">
+        <SheetContent side={'left'} className="w-full">
           <nav>
             <ul
               className="text-3xl font-light
             flex flex-col gap-4 p-4 *:hover:*:opacity-70"
             >
               <li>
-                <Link href={"/shop"}>Каталог</Link>
+                <SheetClose asChild>
+                  <Link href={'/shop'}>Каталог</Link>
+                </SheetClose>
               </li>
               <li>
-                <Link href={"/#about"}>О нас</Link>
+                <SheetClose asChild>
+                  <Link href={'/#about'}>О нас</Link>
+                </SheetClose>
               </li>
               <li>
-                <Link href={"/#contacts"}>Контакты</Link>
+                <SheetClose asChild>
+                  <Link href={'/#contacts'}>Контакты</Link>
+                </SheetClose>
               </li>
               <li>
-                <Link href={"/#reviews"}>Отзывы</Link>
+                <SheetClose asChild>
+                  <Link href={'/#reviews'}>Отзывы</Link>
+                </SheetClose>
               </li>
             </ul>
           </nav>
         </SheetContent>
       </Sheet>
     </div>
-  );
-};
+  )
+}
 
-export default MobileNav;
+export default MobileNav
