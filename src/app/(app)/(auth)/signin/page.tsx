@@ -1,7 +1,7 @@
 'use client'
 
 import { useUser } from '@/app/context/UserContext'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -13,12 +13,19 @@ export type FormValues = {
 
 const Page = () => {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  useEffect(() => {
+    if (searchParams.get('authAction')) {
+      setAction(searchParams.get('authAction') as 'login' | 'register')
+    }
+  }, [])
+
   const {
-register,
-handleSubmit,
+    register,
+    handleSubmit,
     formState: { errors },
     watch,
-} = useForm<FormValues>()
+  } = useForm<FormValues>()
   const { login, register: registerUser } = useUser()
   const [isLoading, setIsLoading] = useState(false)
   const [action, setAction] = useState<'login' | 'register'>('login')
@@ -38,16 +45,18 @@ handleSubmit,
         setErrorMessage(error.message)
       }
     } else {
-    try {
-      await login(data)
-      router.push('/')
-    } catch (error) {
+      try {
+        await login(data)
+        router.push('/')
+      } catch (error) {
         console.log(error)
         setErrorMessage(error.message)
         setTimeout(() => {
           setErrorMessage('')
         }, 5000)
+      }
     }
+
     setIsLoading(false)
   }
 

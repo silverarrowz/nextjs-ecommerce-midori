@@ -56,12 +56,12 @@ const DropdownAccount = ({ isOpen }: DropdownAccountProps) => {
       ) : (
         <ul className="flex flex-col gap-4 w-max">
           <li>
-            <Link href="/signin" className="hover:opacity-80">
+            <Link href="/signin?authAction=login" className="hover:opacity-80">
               Войти
             </Link>
           </li>
           <li>
-            <Link href="/" className="hover:opacity-80">
+            <Link href="/signin?authAction=register" className="hover:opacity-80">
               Регистрация
             </Link>
           </li>
