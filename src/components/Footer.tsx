@@ -34,7 +34,7 @@ const Footer = () => {
                 type="email"
                 placeholder="E-mail"
                 className="py-2 px-4 border border-foreground/60 
-                 placeholder:text-foreground
+                 placeholder:text-heading placeholder:opacity-60
                 focus:outline-none 
                 
               rounded-3xl

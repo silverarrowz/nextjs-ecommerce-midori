@@ -1,9 +1,13 @@
 import { CollectionConfig } from 'payload'
+import { admins } from '../access/admins'
 
 const Products: CollectionConfig = {
   slug: 'products',
   access: {
     read: () => true,
+    create: admins,
+    update: admins,
+    delete: admins,
   },
   admin: {
     useAsTitle: 'name',
@@ -35,6 +39,28 @@ const Products: CollectionConfig = {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
+    },
+    {
+      name: 'relatedProducts',
+      type: 'relationship',
+      relationTo: 'products',
+      hasMany: true,
+      filterOptions: ({ id }) => {
+        return {
+          id: {
+            not_in: [id],
+          },
+        }
+      },
+    },
+    {
+      name: 'categories',
+      type: 'relationship',
+      relationTo: 'categories',
+      hasMany: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
   ],
 }

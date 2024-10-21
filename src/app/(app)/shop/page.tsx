@@ -1,10 +1,31 @@
+'use client'
+
 import ProductCard from '@/components/ProductCard'
 import LineSvg from '@/lib/LineSvg'
 import { Product } from '@/app/(payload)/payload-types'
+import { useEffect, useState } from 'react'
 
-export default async function Page() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products`)
-  const { docs: products }: { docs: Product[] } = await res.json()
+export default function Page() {
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products`)
+      const data = await res.json()
+      setProducts(data.docs as Product[])
+      // setTotalPages(data.totalPages)
+      console.log(data)
+    }
+    fetchProducts()
+  }, [page])
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setPage(newPage)
+    }
+  }
 
   return (
     <div className="pt-28 text-center mx-4 sm:mx-16">
@@ -20,6 +41,26 @@ export default async function Page() {
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
+      </div>
+      {/* Pagination Controls */}
+      <div className="mt-8 flex justify-center items-center">
+        <button
+          onClick={() => handlePageChange(page - 1)}
+          disabled={page === 1}
+          className="px-4 py-2 mr-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100"
+        >
+          Previous
+        </button>
+        <span>
+          {page} of {totalPages}
+        </span>
+        <button
+          onClick={() => handlePageChange(page + 1)}
+          disabled={page === totalPages}
+          className="px-4 py-2 ml-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100"
+        >
+          Next
+        </button>
       </div>
     </div>
   )

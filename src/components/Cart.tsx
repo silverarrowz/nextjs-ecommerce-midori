@@ -24,7 +24,10 @@ const Cart = () => {
           </SheetHeader>
           {cartIsEmpty ? (
             <p>
-              Ваша корзина пуста. <Link href={'/shop'}>Вернуться к покупкам</Link>
+              Ваша корзина пуста.{' '}
+              <SheetClose asChild>
+                <Link href={'/shop'}>Вернуться к покупкам</Link>
+              </SheetClose>
             </p>
           ) : (
             <div className="flex flex-col gap-4">

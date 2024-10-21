@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
 import { Product } from '@/app/(payload)/payload-types'
 import { useState } from 'react'
 import { useCart } from '@/app/context/Cart/CartContext'
-// import { useCartStore } from '@/app/zustand/use-cart'
 
 interface AddToCartButtonProps {
   className?: string
@@ -16,13 +15,12 @@ const AddToCartButton = ({ className, product, showCounter = false }: AddToCartB
   const [quantity, setQuantity] = useState(1)
   const [isAdded, setIsAdded] = useState(false)
 
-  // const { addToCart } = useCartStore()
   const { addItemToCart } = useCart()
 
   return (
-    <div>
+    <div className="w-full justify-self-end">
       <input
-        className={cn(`border-2 border-button p-2 rounded-3xl`, {
+        className={cn(`border-2 border-button p-2 mb-6 rounded-3xl`, {
           hidden: !showCounter,
         })}
         type="number"
@@ -33,7 +31,6 @@ const AddToCartButton = ({ className, product, showCounter = false }: AddToCartB
       />
       <button
         onClick={() => {
-          // addToCart(product, quantity)
           addItemToCart({ product, quantity })
           setQuantity(1)
           setIsAdded(true)
@@ -45,7 +42,7 @@ const AddToCartButton = ({ className, product, showCounter = false }: AddToCartB
           `rounded-3xl border border-heading
       bg-button hover:bg-button/70 transition-all duration-300
       hover:shadow-[inset_0_0_4px_2px_rgba(215,89,161,0.36),0_0_6px_2px_rgba(215,89,161,0.36)] w-full self-center
-      px-9 xs:px-4 xs:text-sm sm:px-6 lg:px-8 py-2 mb-2 mt-6 tracking-widest`,
+      px-9 xs:px-4 xs:text-sm sm:px-6 lg:px-8 py-2 tracking-widest`,
           className,
         )}
       >

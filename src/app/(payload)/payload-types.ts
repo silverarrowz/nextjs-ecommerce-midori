@@ -26,6 +26,7 @@ export interface Config {
     users: User;
     media: Media;
     products: Product;
+    categories: Category;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -63,6 +64,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
+  roles?: ('customer' | 'admin')[] | null;
   cart?: {
     items?: CartItems;
   };
@@ -88,6 +90,8 @@ export interface Product {
   price: number;
   amount?: string | null;
   image?: (string | null) | Media;
+  relatedProducts?: (string | Product)[] | null;
+  categories?: (string | Category)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -112,6 +116,16 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -128,6 +142,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: string | Category;
       } | null);
   globalSlug?: string | null;
   user: {

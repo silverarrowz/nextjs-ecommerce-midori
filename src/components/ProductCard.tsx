@@ -10,7 +10,7 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div
-      className="flex flex-col bg-white shadow-md rounded-lg overflow-hidden
+      className="flex flex-col justify-between bg-white shadow-md rounded-lg overflow-hidden
     p-4 w-full xs:min-w-44 xs:w-1/3 sm:min-w-52 sm:w-1/4 md:w-1/5"
     >
       <Link href={`/product/${product.id}`}>
@@ -19,7 +19,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
             src={typeof product.image === 'string' ? product.image : product.image!.url!}
             alt={product.name}
             fill
-            className="object-cover absolute top-0 left-0 w-full h-full rounded-lg   transition-transform duration-300 hover:scale-105"
+            className="object-cover absolute top-0 left-0 w-full h-full rounded-lg  
+             transition-transform duration-300 hover:scale-105"
           />
         </div>
 
@@ -35,7 +36,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <p className="font-light mt-2">{product.price} руб.</p>
         </div>
       </Link>
-      <AddToCartButton product={product} />
+      <AddToCartButton className="mt-6 mb-2" product={product} />
     </div>
   )
 }

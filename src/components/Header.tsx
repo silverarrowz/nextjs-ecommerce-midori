@@ -9,54 +9,40 @@ import { useEffect, useRef, useState } from 'react'
 import DropdownMenu from './DropdownMenu'
 import LineSvg from '@/lib/LineSvg'
 import DropdownAccount from './DropdownAccount'
-import { useUser } from '@/app/context/UserContext'
+import Searchbar from './Searchbar'
 
 const Header = () => {
-  const { user, isLoggedIn } = useUser()
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false)
   const [isDropdownAccountOpen, setIsDropdownAccountOpen] = useState(false)
-  const buttonRef = useRef<HTMLButtonElement>(null) // Ref for the button
+  const [isSearchbarVisible, setIsSearchbarVisible] = useState(false)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const searchbarRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Check if the click is outside both the button and the dropdown
       if (
         dropdownRef.current &&
         buttonRef.current &&
         !dropdownRef.current.contains(event.target as Node) &&
         !buttonRef.current.contains(event.target as Node)
       ) {
-        setIsDropdownAccountOpen(false) // Close dropdown on outside click
+        setIsDropdownAccountOpen(false)
+      }
+      if (searchbarRef.current && !searchbarRef.current.contains(event.target as Node)) {
+        setIsSearchbarVisible(false)
       }
     }
 
     document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside) // Cleanup listener on unmount
+      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
   const toggleDropdown = () => {
-    setIsDropdownAccountOpen((prevState) => !prevState) // Toggle dropdown state
+    setIsDropdownAccountOpen((prevState) => !prevState)
   }
-
-  // const dropdownRef = useRef<HTMLDivElement | null>(null) // Create a ref for the dropdown
-
-  // const handleClickOutside = (event: MouseEvent) => {
-  //   // Check if the clicked target is outside the dropdown
-  //   if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-  //     setIsDropdownAccountOpen(false)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', handleClickOutside) // Listen for clicks
-
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside) // Clean up
-  //   }
-  // }, [])
 
   return (
     <header
@@ -106,9 +92,13 @@ const Header = () => {
         <h3>MiDori</h3>
       </Link>
       <div className="flex items-center gap-5 md:gap-8 transition-all justify-end">
-        <button className="hidden sm:block">
-          <IoSearch className="size-5 transition-all duration-300 hover:opacity-80" />
-        </button>
+        <div className="relative flex items-center">
+          <button onClick={() => setIsSearchbarVisible(!isSearchbarVisible)} className="relative">
+            <IoSearch className="size-5 transition-all duration-300 hover:opacity-80 relative" />
+          </button>
+          <Searchbar ref={searchbarRef} isVisible={isSearchbarVisible} />
+        </div>
+
         <div className="relative mt-2">
           <button onClick={toggleDropdown} ref={buttonRef}>
             <RiAccountCircleLine className="size-6 transition-all duration-300 hover:opacity-80" />
