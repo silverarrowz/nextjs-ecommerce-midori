@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --button: 60 100% 79%;
-  --button-hover: #ffff94;
+  --button: 90 100% 94;
+  --button-hover: hsl(91, 100%, 78%);
   --heading-dark: #624e88;
   --heading: #8967b3;
-  --background-light: #e2caff;
-  --background-lightest: #f0f8f0;
+  --background-light: hsl(97, 100%, 88%);
+  --background-lightest: hsl(95, 75%, 97%);
   --shadow: rgb(215, 89, 161);
 }
 
@@ -24,7 +24,7 @@ body {
 
 @layer base {
   :root {
-    --background: 267 37% 90%;
+    --background: 300 18% 92%;
     --foreground: 261 27% 42%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;

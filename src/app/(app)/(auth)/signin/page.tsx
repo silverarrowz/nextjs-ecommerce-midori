@@ -71,6 +71,7 @@ const Page = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center gap-6 
+        rounded-lg
         bg-background-lightest shadow-sm border border-heading
         w-fit mx-auto mt-10
         p-8"
@@ -79,7 +80,7 @@ const Page = () => {
           {...register('email', { required: true })}
           type="email"
           placeholder="E-mail"
-          className="py-2 px-4 placeholder:text-heading placeholder:opacity-60 outline outline-1 outline-background rounded-3xl focus:outline-fuchsia-800/40 min-w-72 text-heading"
+          className="py-2 px-4 placeholder:text-heading placeholder:opacity-60 outline outline-1 outline-background rounded-lg focus:outline-fuchsia-800/40 min-w-72 text-heading"
         />
         {errors.email && <p className="text-red-700">{errors.email.message}</p>}
         <input
@@ -92,7 +93,7 @@ const Page = () => {
           })}
           type="password"
           placeholder="Пароль"
-          className="py-2 px-4 placeholder:text-heading placeholder:opacity-60 outline outline-1 outline-background rounded-3xl focus:outline-fuchsia-800/40 min-w-72 text-heading"
+          className="py-2 px-4 placeholder:text-heading placeholder:opacity-60 outline outline-1 outline-background rounded-lg focus:outline-fuchsia-800/40 min-w-72 text-heading"
         />
         {errors.password && <p className="text-red-700/70 text-sm">{errors.password.message}</p>}
         {action === 'register' && (
@@ -103,7 +104,7 @@ const Page = () => {
             })}
             type="password"
             placeholder="Подтвердите пароль"
-            className="py-2 px-4 placeholder:text-heading placeholder:opacity-60 outline outline-1 outline-background rounded-3xl focus:outline-fuchsia-800/40 min-w-72 text-heading"
+            className="py-2 px-4 placeholder:text-heading placeholder:opacity-60 outline outline-1 outline-background rounded-lg focus:outline-fuchsia-800/40 min-w-72 text-heading"
           />
         )}
         {errors.passwordConfirm && (
@@ -114,7 +115,7 @@ const Page = () => {
         <button
           type="submit"
           className="bg-button w-full p-2 border border-heading
-      hover:bg-button/70 transition-all duration-300 rounded-3xl 
+      hover:bg-button/70 transition-all duration-300 rounded-lg 
       hover:shadow-[inset_0_0_4px_2px_rgba(215,89,161,0.36),0_0_6px_2px_rgba(215,89,161,0.36)] 
        tracking-widest"
         >

@@ -3,9 +3,9 @@ import configPromise from '@/app/(payload)/payload.config'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
-  const search = req.nextUrl.searchParams.get('search') || ''
+  const query = req.nextUrl.searchParams.get('query') || ''
   const categoryId = req.nextUrl.searchParams.get('categoryId') || ''
-  const limit = req.nextUrl.searchParams.get('limit') || '6'
+  const limit = req.nextUrl.searchParams.get('limit') || '8'
   const page = req.nextUrl.searchParams.get('page') || '1'
 
   const payload = await getPayload({ config: configPromise })
@@ -16,9 +16,9 @@ export async function GET(req: NextRequest) {
   try {
     const whereQuery: any = {}
 
-    if (search) {
+    if (query) {
       whereQuery.name = {
-        contains: search,
+        contains: query,
       }
     }
 
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
     const products = await payload.find({
       collection: 'products',
       where: whereQuery,
-      // limit: limitNumber,
+      limit: limitNumber,
       // page: pageNumber,
     })
 

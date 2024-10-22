@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 const IntroSection = () => {
   return (
@@ -18,14 +18,12 @@ const IntroSection = () => {
       </div>
       <div className="z-10 lg:absolute top-[14%] right-[14%] lg:top-[30%]">
         <div className="text-center flex flex-col gap-1.5 items-center mt-14 lg:mt-0">
-          <h1 className="text-8xl xs:text-9xl text-foreground font-bold font-serif">
-            MiDori
-          </h1>
+          <h1 className="text-8xl xs:text-9xl text-foreground font-bold font-serif">MiDori</h1>
           <p className=" tracking-wider">Моти ручной работы</p>
           <div className="flex justify-center gap-3 mt-5">
             <Link
-              href={"#mochi"}
-              className="bg-button/60 backdrop-blur-md hover:bg-button flex items-center
+              href={'#mochi'}
+              className="bg-button/60 backdrop-blur-md hover:bg-button-hover flex items-center
                hover:shadow-[inset_0_0_3px_3px_rgba(215,89,161,0.36),0_0_7px_4px_rgba(215,89,161,0.36)]
               leading-3 font-bold
              text-foreground rounded-3xl transition-all duration-300
@@ -34,7 +32,7 @@ const IntroSection = () => {
               Моти
             </Link>
             <Link
-              href={"#matcha"}
+              href={'#matcha'}
               className="bg-background/40 text-foreground  flex items-center leading-3
              border-2 shadow-[inset_0_0_2px_2px_rgba(215,89,161,0.36),0_0_6px_1px_rgba(215,89,161,0.36)]
              hover:shadow-[inset_0_0_4px_3px_rgba(215,89,161,0.36),0_0_7px_4px_rgba(215,89,161,0.36)]
@@ -70,7 +68,7 @@ const IntroSection = () => {
         </svg>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default IntroSection;
+export default IntroSection

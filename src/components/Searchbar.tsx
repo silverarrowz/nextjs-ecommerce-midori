@@ -33,7 +33,7 @@ const Searchbar = forwardRef<HTMLFormElement, SearchbarProps>(({ isVisible, ...p
       onSubmit={handleSubmit}
       ref={ref}
       className={cn(
-        'absolute -right-2.5 -top-2.5 w-0 transition-all duration-300 overflow-hidden rounded-3xl shadow-sm',
+        'absolute -right-2.5 -top-2.5 w-0 transition-all duration-300 overflow-hidden rounded-lg shadow-sm',
         {
           'w-48': isVisible,
         },
@@ -47,8 +47,8 @@ const Searchbar = forwardRef<HTMLFormElement, SearchbarProps>(({ isVisible, ...p
         <input
           ref={inputRef}
           type="text"
-          placeholder="Поиск"
-          className="w-full py-2 px-4 rounded-3xl focus:outline-1 focus:outline-heading text-heading placeholder:text-heading placeholder:opacity-70 overflow-hidden relative"
+          placeholder="Поиск..."
+          className="w-full py-2 px-4 rounded-lg focus:outline-1 focus:outline-heading text-heading placeholder:text-heading placeholder:opacity-70 overflow-hidden relative"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />

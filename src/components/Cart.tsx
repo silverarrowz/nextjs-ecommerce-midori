@@ -40,7 +40,7 @@ const Cart = () => {
                   } = item
 
                   return (
-                    <div key={id} className="flex gap-4 bg-white py-2 px-4 rounded-lg">
+                    <div key={id} className="flex gap-4 bg-white py-2 px-4 rounded-lg shadow-sm">
                       <SheetClose asChild>
                         <Link href={`/product/${id}`} className="flex-shrink-0">
                           <img
@@ -111,8 +111,8 @@ const Cart = () => {
                 </p>
               </div>
               <button
-                className="rounded-3xl border border-heading
-      bg-button hover:bg-button/70 transition-all duration-300
+                className="rounded-lg border border-heading
+      bg-button hover:bg-button/70 transition-all duration-300 shadow-sm
       hover:shadow-[inset_0_0_4px_2px_rgba(215,89,161,0.36),0_0_6px_2px_rgba(215,89,161,0.36)] w-full self-center
       px-9 xs:px-4 xs:text-sm sm:px-6 lg:px-8 py-2 mt-4 tracking-widest"
               >
