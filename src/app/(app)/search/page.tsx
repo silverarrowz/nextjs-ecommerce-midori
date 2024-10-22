@@ -13,6 +13,7 @@ const Page = () => {
   //   const [page, setPage] = useState(1)
   //   const [totalPages, setTotalPages] = useState(1)
   const [products, setProducts] = useState<Product[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setQuery(searchParams.get('query') || '')
@@ -20,20 +21,36 @@ const Page = () => {
   }, [searchParams])
 
   useEffect(() => {
+    if (!query) return
     const fetchProducts = async () => {
+      setIsLoading(true)
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products?limit=8&search=${encodeURIComponent(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/allproducts?search=${encodeURIComponent(
           query,
         )}`,
       )
       const data = await res.json()
       setProducts(data.docs)
-      //   setTotalPages(data.totalPages)
-      console.log(res)
+      // setTotalPages(data.totalPages)
+      setIsLoading(false)
     }
     fetchProducts()
   }, [query])
 
+  if (isLoading) {
+    return (
+      <div className="pt-28 mx-4 sm:mx-16">
+        <p>Идёт поиск...</p>
+      </div>
+    )
+  }
+
+  if (!products?.length && !isLoading)
+    return (
+      <div className="pt-28 mx-4 sm:mx-16">
+        <p>Поиск не дал результатов.</p>
+      </div>
+    )
   return (
     <div className="pt-28 text-center mx-4 sm:mx-16">
       <h1

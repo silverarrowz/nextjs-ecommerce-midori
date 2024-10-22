@@ -2,7 +2,8 @@
 
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { FormEvent, forwardRef, useEffect, useRef, useState } from 'react'
 import { IoSearch } from 'react-icons/io5'
 
 interface SearchbarProps extends React.FormHTMLAttributes<HTMLFormElement> {
@@ -13,6 +14,13 @@ const Searchbar = forwardRef<HTMLFormElement, SearchbarProps>(({ isVisible, ...p
   const [searchQuery, setSearchQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const router = useRouter()
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    router.push(`/search?query=${searchQuery}`)
+  }
+
   useEffect(() => {
     setSearchQuery('')
     if (isVisible && inputRef.current) {
@@ -22,22 +30,19 @@ const Searchbar = forwardRef<HTMLFormElement, SearchbarProps>(({ isVisible, ...p
 
   return (
     <form
+      onSubmit={handleSubmit}
       ref={ref}
       className={cn(
-        'absolute -right-2.5 -top-2.5 w-0 transition-all duration-300 overflow-hidden rounded-3xl',
+        'absolute -right-2.5 -top-2.5 w-0 transition-all duration-300 overflow-hidden rounded-3xl shadow-sm',
         {
           'w-48': isVisible,
         },
       )}
     >
       <div className="w-full relative">
-        <Link
-          href={`/search/?query=${searchQuery}`}
-          type="submit"
-          className="absolute right-2.5 top-2.5 z-[1404] text-heading"
-        >
+        <button type="submit" className="absolute right-2.5 top-2.5 z-[1404] text-heading">
           <IoSearch className="size-5" />
-        </Link>
+        </button>
 
         <input
           ref={inputRef}

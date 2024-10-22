@@ -2,36 +2,16 @@
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 
 import FeaturedItem from './FeaturedItem'
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md'
 import Link from 'next/link'
+import { Product } from '@/app/(payload)/payload-types'
 
 const MatchaSection = () => {
   const slider = useRef(null)
-
-  const featuredItems = [
-    {
-      title: 'Матча',
-      amount: '100 г',
-      price: 320,
-      image: '/images/matcha-powder.png',
-    },
-    {
-      title: 'Розовая матча',
-      amount: '100 г',
-      price: 360,
-      image: '/images/matcha-pink-powder.png',
-    },
-    {
-      title: 'Голубая матча',
-      amount: '100 г',
-      price: 330,
-      image: '/images/matcha-blue-powder.png',
-    },
-  ]
 
   const settings = {
     infinite: true,
@@ -54,6 +34,20 @@ const MatchaSection = () => {
       },
     ],
   }
+
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await fetch(
+        `${
+          process.env.NEXT_PUBLIC_PAYLOAD_URL
+        }/api/allproducts?limit=8&categoryId=${encodeURIComponent('6713885202adac4858d83115')}`,
+      )
+      const { docs: products }: { docs: Product[] } = await res.json()
+      setFeaturedProducts(products)
+    }
+    fetchProducts()
+  }, [])
 
   return (
     <section
@@ -144,17 +138,11 @@ const MatchaSection = () => {
           />
         </button>
 
-        {/* <Slider ref={slider} {...settings}>
-          {featuredItems.map((item) => (
-            <FeaturedItem
-              key={item.image}
-              title={item.title}
-              image={item.image}
-              price={item.price}
-              amount={item.amount}
-            />
+        <Slider ref={slider} {...settings}>
+          {featuredProducts.map((product) => (
+            <FeaturedItem key={product.id} product={product} />
           ))}
-        </Slider> */}
+        </Slider>
 
         <Link
           href={'/shop'}

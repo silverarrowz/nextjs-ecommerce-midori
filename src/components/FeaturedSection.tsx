@@ -15,7 +15,11 @@ const FeaturedSection = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products`)
+      const res = await fetch(
+        `${
+          process.env.NEXT_PUBLIC_PAYLOAD_URL
+        }/api/allproducts?limit=8&categoryId=${encodeURIComponent('6713884202adac4858d830dc')}`,
+      )
       const { docs: products }: { docs: Product[] } = await res.json()
       setFeaturedProducts(products)
     }

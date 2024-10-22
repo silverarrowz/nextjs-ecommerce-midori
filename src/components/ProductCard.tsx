@@ -26,13 +26,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         <div className="mt-4 flex-grow">
           <h2
-            className=" text-2xl sm:text-xl md:text-2xl xl:text-3xl 
+            className="text-2xl sm:text-xl md:text-2xl xl:text-3xl 
           leading-none
            tracking-widest font-serif line-clamp-2"
           >
             {product.name}
           </h2>
-          {product.amount && <p className="text-sm text-gray-500 mt-1">{product.amount}</p>}
+          {product.amount && <p className="font-light text-sm opacity-70 mt-1">{product.amount}</p>}
           <p className="font-light mt-2">{product.price} руб.</p>
         </div>
       </Link>
