@@ -22,6 +22,7 @@ const Page = () => {
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
+      params.delete(name)
       params.set(name, value)
 
       return params.toString()
@@ -29,16 +30,34 @@ const Page = () => {
     [searchParams],
   )
 
+  const updateQueryParam = (value: string) => {
+    if (searchParams.get('query') !== value) {
+      router.push(pathname + '?' + createQueryString('query', value))
+    }
+  }
+
+  const updateCategoryParam = (value: string) => {
+    if (searchParams.get('categoryId') !== value) {
+      router.push(pathname + '?' + createQueryString('categoryId', value))
+    }
+  }
+
   const handleCategoryChange = (e) => {
     setCategoryId(e.target.value)
-    router.push(pathname + '?' + createQueryString('categoryId', e.target.value))
+    updateCategoryParam(e.target.value)
   }
 
   const handleSearch = (e) => {
     e.preventDefault()
+    setQuery(e.target.value)
     setTimeout(() => {
-      router.push(pathname + '?' + createQueryString('query', e.target.value))
+      updateQueryParam(e.target.value)
     }, 2000)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    updateQueryParam(query)
   }
 
   const fetchProducts = async (query: string, categoryId: string) => {
@@ -54,26 +73,34 @@ const Page = () => {
     setIsLoading(false)
   }
 
+  // useEffect(() => {
+  //   const initialQuery = searchParams.get('query') || ''
+  //   const initialCategoryId = searchParams.get('categoryId') || ''
+
+  //   setQuery(initialQuery)
+  //   setCategoryId(initialCategoryId)
+
+  //   if (initialQuery || initialCategoryId) {
+  //     fetchProducts(initialQuery, initialCategoryId)
+  //   }
+  // }, [])
+
+  // fetch every time the query string changes
   useEffect(() => {
-    const initialQuery = searchParams.get('query') || ''
-    const initialCategoryId = searchParams.get('categoryId') || ''
+    const paramsQuery = searchParams.get('query') || ''
+    const paramsCategory = searchParams.get('categoryId') || ''
 
-    setQuery(initialQuery)
-    setCategoryId(initialCategoryId)
+    setQuery(paramsQuery)
+    setCategoryId(paramsCategory)
 
-    if (initialQuery || initialCategoryId) {
-      fetchProducts(initialQuery, initialCategoryId)
+    if (paramsQuery || paramsCategory) {
+      fetchProducts(paramsQuery, paramsCategory)
     }
-  }, [])
-
-  useEffect(() => {
-    setQuery(searchParams.get('query') || '')
-    setCategoryId(searchParams.get('categoryId') || '')
   }, [searchParams])
 
-  useEffect(() => {
-    fetchProducts(query, categoryId)
-  }, [query, categoryId])
+  // useEffect(() => {
+  //   fetchProducts(query, categoryId)
+  // }, [query, categoryId])
 
   if (!products?.length && !isLoading)
     return (
@@ -85,23 +112,32 @@ const Page = () => {
           Поиск
           <LineSvg className="-left-4 -right-4 -bottom-20" strokeColor="#f0f8f0" />
         </h1>
-        <form className="mb-12 h-10 flex gap-2 justify-center">
+        <form className="mb-12 h-10 flex gap-2 justify-center" onSubmit={handleSubmit}>
           <input
             onChange={handleSearch}
+            value={query}
             type="text"
             placeholder="Поиск..."
             className="p-2 rounded-lg text-heading placeholder:text-heading placeholder:opacity-70 focus:border border-heading-dark focus:outline-none shadow-sm"
           />
           <select
             onChange={handleCategoryChange}
+            value={categoryId}
             name="category"
             id="category"
-            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm"
+            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
           >
             <option value="">Все категории</option>
             <option value="6713885202adac4858d83115">Матча</option>
             <option value="6713884202adac4858d830dc">Моти</option>
           </select>
+          <button
+            type="submit"
+            className="rounded-full shadow-sm hover:shadow-none bg-button hover:bg-button-hover px-4 transition-colors duration-200 
+          tracking-wider"
+          >
+            Искать
+          </button>
         </form>
         <p>Поиск не дал результатов.</p>
       </div>
@@ -117,23 +153,35 @@ const Page = () => {
           Поиск
           <LineSvg className="-left-4 -right-4 -bottom-20" strokeColor="#f0f8f0" />
         </h1>
-        <form className="mb-12 h-10 flex gap-2 justify-center">
+        <form className="mb-12 h-10 flex gap-2 justify-center" onSubmit={handleSubmit}>
           <input
             onChange={handleSearch}
+            value={query}
+            disabled
             type="text"
             placeholder="Поиск..."
             className="p-2 rounded-lg text-heading placeholder:text-heading placeholder:opacity-70 focus:border border-heading-dark focus:outline-none shadow-sm"
           />
           <select
             onChange={handleCategoryChange}
+            value={categoryId}
+            disabled
             name="category"
             id="category"
-            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm"
+            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
           >
             <option value="">Все категории</option>
             <option value="6713885202adac4858d83115">Матча</option>
             <option value="6713884202adac4858d830dc">Моти</option>
           </select>
+          <button
+            type="submit"
+            disabled
+            className="rounded-full shadow-sm hover:shadow-none bg-button  px-4 transition-colors duration-200 
+          tracking-wider"
+          >
+            Искать
+          </button>
         </form>
         <p>Идёт поиск...</p>
       </div>
@@ -148,23 +196,32 @@ const Page = () => {
         Поиск
         <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#f0f8f0" />
       </h1>
-      <form className="mb-12 h-10 flex gap-2 justify-center">
+      <form className="mb-12 h-10 flex gap-2 justify-center" onSubmit={handleSubmit}>
         <input
           onChange={handleSearch}
+          value={query}
           type="text"
           placeholder="Поиск..."
-          className="p-2 rounded-lg text-heading placeholder:text-heading placeholder:opacity-70 focus:border border-heading-dark focus:outline-none shadow-sm"
+          className="p-2 rounded-lg text-heading placeholder:text-heading hover:bg-button placeholder:opacity-70 focus:border border-heading-dark focus:outline-none shadow-sm"
         />
         <select
           onChange={handleCategoryChange}
+          value={categoryId}
           name="category"
           id="category"
-          className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm"
+          className="px-3 py-2 rounded-lg text-heading focus:border hover:bg-button border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
         >
           <option value="">Все категории</option>
           <option value="6713885202adac4858d83115">Матча</option>
           <option value="6713884202adac4858d830dc">Моти</option>
         </select>
+        <button
+          type="submit"
+          className="rounded-full shadow-sm hover:shadow-none bg-button hover:bg-button-hover px-4 transition-colors duration-200 
+          tracking-wider border-2 border-heading"
+        >
+          Искать
+        </button>
       </form>
 
       <div className="w-full flex justify-center gap-6 xs:gap-4 md:gap-6 flex-wrap mb-4">

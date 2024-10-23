@@ -37,11 +37,11 @@ const Footer = () => {
                  placeholder:text-heading placeholder:opacity-60
                 focus:outline-none 
                 
-              rounded-lg
+              rounded-s-lg
                   font-sans-light"
               />
               <button
-                className="bg-button rounded-lg
+                className="bg-button rounded-e-full
              tracking-widest border border-foreground/60
                hover:bg-transparent  transition-all duration-300
                 hover:shadow-[inset_0_0_3px_3px_rgba(215,89,161,0.36),0_0_7px_4px_rgba(215,89,161,0.36)]
