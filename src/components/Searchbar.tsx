@@ -1,7 +1,6 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { FormEvent, forwardRef, useEffect, useRef, useState } from 'react'
 import { IoSearch } from 'react-icons/io5'
@@ -48,7 +47,7 @@ const Searchbar = forwardRef<HTMLFormElement, SearchbarProps>(({ isVisible, ...p
           ref={inputRef}
           type="text"
           placeholder="Поиск..."
-          className="w-full py-2 px-4 rounded-lg focus:outline-1 focus:outline-heading text-heading placeholder:text-heading placeholder:opacity-70 overflow-hidden relative"
+          className="w-full py-2 px-4 rounded-lg border-2 border-heading-dark focus:border-heading-dark focus:outline-none text-heading-dark placeholder:text-heading-dark placeholder:opacity-70 overflow-hidden relative"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />

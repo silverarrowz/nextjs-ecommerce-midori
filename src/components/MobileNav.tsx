@@ -1,12 +1,30 @@
+'use client'
+
 import Link from 'next/link'
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from './ui/sheet'
 import { RxHamburgerMenu } from 'react-icons/rx'
+import MobileSearchbar from './MobileSearchbar'
+import { useEffect, useState } from 'react'
 
 const MobileNav = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  // useEffect(() => {
+  //   const handleSearchSubmit = (event: MouseEvent | KeyboardEvent) => {}
+
+  //   document.addEventListener('mousedown', handleSearchSubmit)
+  //   document.addEventListener('keydown', handleSearchSubmit)
+
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleSearchSubmit)
+  //     document.removeEventListener('keydown', handleSearchSubmit)
+  //   }
+  // }, [])
+
   return (
     <div className="lg:hidden flex items-center">
-      <Sheet>
-        <SheetTrigger>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetTrigger onClick={() => setIsOpen(true)}>
           <RxHamburgerMenu className="" size={24} />
         </SheetTrigger>
         <SheetContent side={'left'} className="w-full">
@@ -17,26 +35,35 @@ const MobileNav = () => {
             >
               <li>
                 <SheetClose asChild>
-                  <Link href={'/shop'}>Каталог</Link>
+                  <Link href={'/shop'} onClick={() => setIsOpen(false)}>
+                    Каталог
+                  </Link>
                 </SheetClose>
               </li>
               <li>
                 <SheetClose asChild>
-                  <Link href={'/#about'}>О нас</Link>
+                  <Link href={'/#about'} onClick={() => setIsOpen(false)}>
+                    О нас
+                  </Link>
                 </SheetClose>
               </li>
               <li>
                 <SheetClose asChild>
-                  <Link href={'/#contacts'}>Контакты</Link>
+                  <Link href={'/#contacts'} onClick={() => setIsOpen(false)}>
+                    Контакты
+                  </Link>
                 </SheetClose>
               </li>
               <li>
                 <SheetClose asChild>
-                  <Link href={'/#reviews'}>Отзывы</Link>
+                  <Link href={'/#reviews'} onClick={() => setIsOpen(false)}>
+                    Отзывы
+                  </Link>
                 </SheetClose>
               </li>
             </ul>
           </nav>
+          <MobileSearchbar className="mt-8" closeSheet={() => setIsOpen(false)} />
         </SheetContent>
       </Sheet>
     </div>

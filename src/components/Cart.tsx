@@ -16,7 +16,7 @@ const Cart = () => {
           <GrShop className="size-5 transition-all duration-300 -mb-1" />
         </SheetTrigger>
 
-        <SheetContent className="w-[80%] sm:w-[30rem] sm:max-w-[30rem]">
+        <SheetContent className="w-full sm:w-[30rem] sm:max-w-[30rem]">
           <SheetHeader>
             <SheetTitle>
               <h2 className="font-serif text-center text-3xl mb-6">Корзина</h2>
@@ -30,72 +30,84 @@ const Cart = () => {
               </SheetClose>
             </p>
           ) : (
-            <div className="flex flex-col gap-4">
-              {cart?.items?.map((item, index) => {
-                if (typeof item.product === 'object') {
-                  const {
-                    quantity,
-                    product,
-                    product: { id, name, image, price },
-                  } = item
+            <div>
+              <div className="flex flex-col gap-4 overflow-y-scroll max-h-[60vh]">
+                {cart?.items?.map((item, index) => {
+                  if (typeof item.product === 'object') {
+                    const {
+                      quantity,
+                      product,
+                      product: { id, name, image, price },
+                    } = item
 
-                  return (
-                    <div key={id} className="flex gap-4 bg-white py-2 px-4 rounded-lg shadow-sm">
-                      <SheetClose asChild>
-                        <Link href={`/product/${id}`} className="flex-shrink-0">
-                          <img
-                            src={typeof image === 'string' ? image : image!.url!}
-                            alt={name}
-                            className="w-[100px]"
-                          />
-                        </Link>
-                      </SheetClose>
+                    return (
+                      <div
+                        key={id}
+                        className="flex gap-4 xs:gap-0 sm:gap-4 flex-col sm:flex-row justify-between sm:h-32 bg-white p-4 rounded-lg shadow-sm"
+                      >
+                        <div className="flex gap-4 justify-stretch w-full sm:w-fit">
+                          <SheetClose asChild>
+                            <Link
+                              href={`/product/${id}`}
+                              className="flex-shrink-0 flex-grow overflow-hidden w-[50px] xs:w-[160px] xs:h-24 xs:flex-grow-0  sm:w-[90px]"
+                            >
+                              <img
+                                src={typeof image === 'string' ? image : image!.url!}
+                                alt={name}
+                                className="h-[60px] xs:h-full sm:h-[80px] w-full object-cover"
+                              />
+                            </Link>
+                          </SheetClose>
+                          <div className="flex flex-col gap-1 flex-shrink-0">
+                            <SheetClose asChild>
+                              <Link href={`/product/${id}`} className="flex-shrink-0">
+                                <h3 className="text-heading-dark">{name}</h3>
+                              </Link>
+                            </SheetClose>
 
-                      <div className="flex flex-col gap-1 flex-shrink-0">
-                        <SheetClose asChild>
-                          <Link href={`/product/${id}`} className="flex-shrink-0">
-                            <h3 className="text-heading-dark">{name}</h3>
-                          </Link>
-                        </SheetClose>
+                            <p className="text-sm text-heading opacity-80">
+                              Количество: {quantity}
+                            </p>
+                            <p className="text-sm text-heading opacity-80">
+                              Стоимость:{' '}
+                              <span className="font-bold opacity-100">{price * quantity}</span> руб.
+                            </p>
+                          </div>
+                        </div>
 
-                        <p className="text-sm text-heading opacity-80">Количество: {quantity}</p>
-                        <p className="text-sm text-heading opacity-80">
-                          Стоимость:{' '}
-                          <span className="font-bold opacity-100">{price * quantity}</span> руб.
-                        </p>
-                      </div>
-                      <div className="flex justify-between w-full">
-                        <div className="flex items-center h-fit gap-2 self-center">
+                        <div className="flex justify-end w-full sm:w-fit gap-4">
+                          <div className="flex items-center h-fit gap-2 self-center">
+                            <button
+                              onClick={() => deleteOneItem(product)}
+                              disabled={item.quantity === 1}
+                              className="text-3xl  leading-3 bg-background-light rounded-full p-2 disabled:bg-slate-200 disabled:text-slate-400"
+                            >
+                              <FaMinus size={12} />
+                            </button>
+                            {item.quantity}
+                            <button
+                              onClick={() => addOneItem(product)}
+                              className="text-3xl leading-3 bg-background-light p-2 rounded-full"
+                            >
+                              <FaPlus size={12} />
+                            </button>
+                          </div>
                           <button
-                            onClick={() => deleteOneItem(product)}
-                            disabled={item.quantity === 1}
-                            className="text-3xl  leading-3 bg-background-light rounded-full p-2 disabled:bg-slate-200 disabled:text-slate-400"
+                            onClick={() => {
+                              deleteItemFromCart(product)
+                              console.log('click')
+                            }}
                           >
-                            <FaMinus size={12} />
-                          </button>
-                          {item.quantity}
-                          <button
-                            onClick={() => addOneItem(product)}
-                            className="text-3xl leading-3 bg-background-light p-2 rounded-full"
-                          >
-                            <FaPlus size={12} />
+                            <FaRegTrashAlt size={20} />
                           </button>
                         </div>
-                        <button
-                          onClick={() => {
-                            deleteItemFromCart(product)
-                            console.log('click')
-                          }}
-                        >
-                          <FaRegTrashAlt size={20} />
-                        </button>
                       </div>
-                    </div>
-                  )
-                }
-                return null
-              })}
-              <div className="text-right font-light mt-2">
+                    )
+                  }
+                  return null
+                })}
+              </div>
+              <div className="text-right font-light mt-4">
                 <p className="text-lg ">
                   Итого:{' '}
                   <span className="font-bold text-2xl text-heading-dark">
@@ -111,10 +123,10 @@ const Cart = () => {
                 </p>
               </div>
               <button
-                className="rounded-lg border border-heading
-      bg-button hover:bg-button/70 transition-all duration-300 shadow-sm
-      hover:shadow-[inset_0_0_4px_2px_rgba(215,89,161,0.36),0_0_6px_2px_rgba(215,89,161,0.36)] w-full self-center
-      px-9 xs:px-4 xs:text-sm sm:px-6 lg:px-8 py-2 mt-4 tracking-widest"
+                className="rounded-full border-2 font-bold border-heading
+   bg-button hover:bg-button/70 transition-all duration-300 shadow-sm
+   hover:shadow-[inset_0_0_4px_2px_rgba(215,89,161,0.36),0_0_6px_2px_rgba(215,89,161,0.36)] w-full self-center
+   px-9 xs:px-4 xs:text-sm sm:text-base sm:px-6 lg:px-8 py-2 mt-4 tracking-widest"
               >
                 К оплате
               </button>

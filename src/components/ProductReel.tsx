@@ -8,6 +8,7 @@ import FeaturedItem from './FeaturedItem'
 import { useEffect, useRef } from 'react'
 import { Product } from '@/app/(payload)/payload-types'
 import { cn } from '@/lib/utils'
+import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi'
 
 interface ProductReelProps {
   products: Product[]
@@ -54,26 +55,20 @@ const ProductReel = ({ products, className }: ProductReelProps) => {
     <div
       className={cn(
         `max-w-[94%] text-center
-      mx-auto py-16 relative`,
+      mx-auto pb-16 mt-8 relative`,
         className,
       )}
     >
-      <button>
-        <MdNavigateBefore
-          className="z-20 h-10 w-10 xs:h-14 xs:w-14 opacity-55 absolute
-             left-0 top-[36%] text-heading-dark sm:hidden"
-          // @ts-expect-error test
-          onClick={() => slider?.current?.slickPrev()}
-        />
-      </button>
-      <button>
-        <MdNavigateNext
-          className="z-20 h-10 w-10 xs:h-14 xs:w-14 opacity-55 absolute right-0
-            top-[36%] text-heading-dark sm:hidden"
-          // @ts-expect-error test
-          onClick={() => slider?.current?.slickNext()}
-        />
-      </button>
+      <div className="mb-4 mx-2 xs:mx-4 z-10">
+        {/* @ts-expect-error test  */}
+        <button onClick={() => slider?.current?.slickPrev()}>
+          <MdNavigateBefore className="w-8 h-8 md:h-12 md:w-12 text-heading" />
+        </button>
+        {/* @ts-expect-error test */}
+        <button onClick={() => slider?.current?.slickNext()}>
+          <MdNavigateNext className="w-8 h-8 md:h-12 md:w-12 text-heading" />
+        </button>
+      </div>
 
       <Slider ref={slider} {...settings}>
         {products.map((product) => (

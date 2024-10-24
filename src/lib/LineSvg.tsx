@@ -6,7 +6,7 @@ interface LineSvgProps {
   strokeWidth?: number
 }
 
-const LineSvg = ({ className, strokeColor = '#8967B3', strokeWidth = 15 }: LineSvgProps) => {
+const LineSvg = ({ className, strokeColor = '#792b59', strokeWidth = 15 }: LineSvgProps) => {
   return (
     <svg
       className={cn('absolute', className)}

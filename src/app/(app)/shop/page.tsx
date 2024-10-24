@@ -4,26 +4,37 @@ import ProductCard from '@/components/ProductCard'
 import LineSvg from '@/lib/LineSvg'
 import { Product } from '@/app/(payload)/payload-types'
 import { useEffect, useState } from 'react'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination'
+import { cn } from '@/lib/utils'
 
 export default function Page() {
-  const [page, setPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products`)
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products?page=${currentPage}&limit=8`,
+      )
       const data = await res.json()
       setProducts(data.docs as Product[])
-      // setTotalPages(data.totalPages)
+      setTotalPages(data.totalPages)
       console.log(data)
     }
     fetchProducts()
-  }, [page])
+  }, [currentPage])
 
   const handlePageChange = (newPage: number) => {
     if (newPage > 0 && newPage <= totalPages) {
-      setPage(newPage)
+      setCurrentPage(newPage)
     }
   }
 
@@ -42,26 +53,42 @@ export default function Page() {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      {/* Pagination Controls */}
-      <div className="mt-8 flex justify-center items-center">
-        <button
-          onClick={() => handlePageChange(page - 1)}
-          disabled={page === 1}
-          className="px-4 py-2 mr-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100"
-        >
-          Previous
-        </button>
-        <span>
-          {page} of {totalPages}
-        </span>
-        <button
-          onClick={() => handlePageChange(page + 1)}
-          disabled={page === totalPages}
-          className="px-4 py-2 ml-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100"
-        >
-          Next
-        </button>
-      </div>
+
+      <Pagination className="mt-10">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={() => handlePageChange(currentPage - 1)}
+              className={cn('', {
+                'pointer-events-none opacity-60': currentPage === 1,
+              })}
+            />
+          </PaginationItem>
+
+          {[...Array(totalPages)].map((_, index) => (
+            <PaginationItem key={index}>
+              <PaginationLink
+                isActive={index + 1 === currentPage}
+                href="#"
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={() => handlePageChange(currentPage + 1)}
+              className={cn('', {
+                'pointer-events-none opacity-60': currentPage === totalPages,
+              })}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   )
 }

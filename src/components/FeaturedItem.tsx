@@ -17,7 +17,7 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
         my-4
         text-heading-dark  
         items-center z-10
-        h-[18rem] xs:h-[20rem] lg:h-[24rem] 
+        h-[20rem] xs:h-[22rem] lg:h-[24rem] 
         transition-transform duration-300 hover:scale-105"
     >
       <Link href={`/product/${product.id}`}>
@@ -37,16 +37,19 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
         <div className="flex-grow">
           <h3
             className="text-xl md:text-2xl xl:text-3xl 
-          leading-none
+          leading-none 
            tracking-widest font-serif line-clamp-2 sm:mt-4 lg:mt-0"
           >
             {name}
           </h3>
-          {amount && <p className="font-light text-sm opacity-70">{amount}</p>}
+          {amount && <p className="font-light mt-2 text-sm opacity-70">{amount}</p>}
           <p className="font-light text-sm my-4">{price} руб.</p>
         </div>
       </Link>
-      <AddToCartButton className="justify-self-end p-1 md:p-2 text-sm" product={product} />
+      <AddToCartButton
+        className="justify-self-end p-1 md:p-2 text-sm sm:text-xs md:text-sm"
+        product={product}
+      />
     </div>
   )
 }

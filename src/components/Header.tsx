@@ -40,6 +40,7 @@ const Header = () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
+
   const toggleDropdown = () => {
     setIsDropdownAccountOpen((prevState) => !prevState)
   }
@@ -92,7 +93,7 @@ const Header = () => {
         <h3>MiDori</h3>
       </Link>
       <div className="flex items-center gap-5 md:gap-8 transition-all justify-end">
-        <div className="relative flex items-center">
+        <div className="hidden relative sm:flex items-center">
           <button onClick={() => setIsSearchbarVisible(!isSearchbarVisible)} className="relative">
             <IoSearch className="size-5 transition-all duration-300 hover:opacity-80 relative" />
           </button>

@@ -45,7 +45,7 @@ const DropdownAccount = forwardRef<HTMLDivElement, DropdownAccountProps>(
         )}
       >
         {user !== null ? (
-          <ul className="flex flex-col gap-2 w-max">
+          <ul className="flex flex-col gap-2 sm:w-max">
             <li>
               <p className="font-light mb-2">
                 Добро пожаловать, <span className="font-bold">{user!.email}</span>

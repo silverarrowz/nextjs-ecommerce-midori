@@ -42,7 +42,7 @@ const AddToCartButton = ({ className, product, showCounter = false }: AddToCartB
           `rounded-full shadow-md
       bg-button transition-all duration-200 
       border-2 border-heading
-      hover:bg-button-hover  
+      hover:bg-heading hover:text-white  
       hover:shadow-sm w-full self-center
       px-9 xs:px-4 xs:text-sm sm:text-base sm:px-6 lg:px-8 py-2 tracking-widest font-bold text-heading`,
           className,

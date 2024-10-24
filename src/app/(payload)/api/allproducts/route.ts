@@ -32,7 +32,7 @@ export async function GET(req: NextRequest) {
       collection: 'products',
       where: whereQuery,
       limit: limitNumber,
-      // page: pageNumber,
+      page: pageNumber,
     })
 
     if (products.docs.length) {
@@ -43,27 +43,4 @@ export async function GET(req: NextRequest) {
   } catch (error) {
     return NextResponse.json({ status: 500, error: 'Server error' })
   }
-
-  // try {
-  //   const products = await payload.find({
-  //     collection: 'products',
-  //     where: {
-  //       name: {
-  //         contains: search,
-  //       },
-  //       categories: {
-  //         in: [categoryId],
-  //       },
-  //     },
-  //     limit: limitNumber,
-  //   })
-
-  //   if (products.docs.length) {
-  //     return NextResponse.json(products, { status: 200 })
-  //   } else {
-  //     return NextResponse.json({ status: 404, error: 'No products found matching the query' })
-  //   }
-  // } catch (error) {
-  //   return NextResponse.json({ status: 500, error: 'Server error' })
-  // }
 }
