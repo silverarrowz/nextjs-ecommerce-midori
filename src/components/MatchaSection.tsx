@@ -6,11 +6,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 
 import FeaturedItem from './FeaturedItem'
-import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md'
 import Link from 'next/link'
 import { Product } from '@/app/(payload)/payload-types'
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi'
-import { PropagateLoader } from 'react-spinners'
 
 const MatchaSection = () => {
   const slider = useRef(null)
@@ -18,14 +16,22 @@ const MatchaSection = () => {
   const settings = {
     infinite: true,
     speed: 400,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToShow: 4,
+    slidesToScroll: 2,
     arrows: false,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     cssEase: 'ease-in-out',
     responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          autoplay: true,
+        },
+      },
       {
         breakpoint: 640,
         settings: {
@@ -38,10 +44,9 @@ const MatchaSection = () => {
   }
 
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setIsLoading(true)
     const fetchProducts = async () => {
       const res = await fetch(
         `${
@@ -116,11 +121,122 @@ const MatchaSection = () => {
           </div>
         </h2>
         <div className="py-20">
-          <PropagateLoader color="#8967b3" aria-label="Loading Spinner" className="" />
+          <Slider {...settings}>
+            <div
+              role="status"
+              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        my-4 border border-button rounded shadow animate-pulse"
+            >
+              <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
+                <svg
+                  className="w-full h-10 text-button"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 16 20"
+                >
+                  <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z" />
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
+                </svg>
+              </div>
+              <div className="h-2.5 bg-button rounded-full mb-4"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full "></div>
+
+              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+
+              <span className="sr-only">Loading...</span>
+            </div>
+
+            <div
+              role="status"
+              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        my-4 border border-button rounded shadow animate-pulse"
+            >
+              <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
+                <svg
+                  className="w-full h-10 text-button"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 16 20"
+                >
+                  <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z" />
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
+                </svg>
+              </div>
+              <div className="h-2.5 bg-button rounded-full mb-4"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full "></div>
+
+              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+
+              <span className="sr-only">Loading...</span>
+            </div>
+
+            <div
+              role="status"
+              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        my-4 border border-button rounded shadow animate-pulse"
+            >
+              <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
+                <svg
+                  className="w-full h-10 text-button"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 16 20"
+                >
+                  <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z" />
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
+                </svg>
+              </div>
+              <div className="h-2.5 bg-button rounded-full mb-4"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full "></div>
+
+              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+
+              <span className="sr-only">Loading...</span>
+            </div>
+
+            <div
+              role="status"
+              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        my-4 border border-button rounded shadow animate-pulse"
+            >
+              <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
+                <svg
+                  className="w-full h-10 text-button"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 16 20"
+                >
+                  <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z" />
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
+                </svg>
+              </div>
+              <div className="h-2.5 bg-button rounded-full mb-4"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
+              <div className="h-2 bg-button rounded-full "></div>
+
+              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+
+              <span className="sr-only">Loading...</span>
+            </div>
+          </Slider>
         </div>
       </section>
     )
-  // TODO: replace loaders with skeletons
 
   return (
     <section

@@ -26,7 +26,7 @@ const Page = () => {
     formState: { errors },
     watch,
   } = useForm<FormValues>()
-  const { login, register: registerUser } = useUser()
+  const { login, register: registerUser, user } = useUser()
   const [isLoading, setIsLoading] = useState(false)
   const [action, setAction] = useState<'login' | 'register'>('login')
   const [errorMessage, setErrorMessage] = useState('')
@@ -58,6 +58,11 @@ const Page = () => {
     }
 
     setIsLoading(false)
+  }
+
+  if (user) {
+    router.push('/')
+    return
   }
 
   return (

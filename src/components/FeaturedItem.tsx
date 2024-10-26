@@ -23,8 +23,7 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
       <Link href={`/product/${product.id}`}>
         <div
           className="max-w-[14rem] h-32 xs:h-40 sm:max-w-none
-         sm:h-32 lg:h-48
-        "
+         sm:h-32 lg:h-48"
         >
           <img
             src={image.url}
