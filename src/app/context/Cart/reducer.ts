@@ -159,7 +159,6 @@ export const cartReducer = (cart: CartType, action: CartAction): CartType => {
       if (typeof indexInCart === 'number' && withDeletedItem.items && indexInCart > -1)
         withDeletedItem.items.splice(indexInCart, 1)
 
-      console.log(withDeletedItem)
       return withDeletedItem
     }
 

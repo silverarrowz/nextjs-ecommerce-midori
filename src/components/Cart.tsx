@@ -3,11 +3,27 @@ import { GrShop } from 'react-icons/gr'
 import Link from 'next/link'
 import { FaMinus, FaPlus, FaRegTrashAlt } from 'react-icons/fa'
 import { useCart } from '@/app/context/Cart/CartContext'
+import { useUser } from '@/app/context/UserContext'
+
+import { loadStripe } from '@stripe/stripe-js'
+import { CartItems } from '@/app/(payload)/payload-types'
 
 const Cart = () => {
-  // const { items, removeFromCart, removeOne, addOne } = useCartStore()
   const { cartIsEmpty, deleteItemFromCart, hasInitializedCart, cart, addOneItem, deleteOneItem } =
     useCart()
+
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+
+  const handleCheckout = async (cartItems: CartItems) => {
+    const stripe = await stripePromise
+    const response = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cartItems }),
+    })
+    const session = await response.json()
+    await stripe?.redirectToCheckout({ sessionId: session.id })
+  }
 
   return (
     <div>
@@ -95,7 +111,6 @@ const Cart = () => {
                           <button
                             onClick={() => {
                               deleteItemFromCart(product)
-                              console.log('click')
                             }}
                           >
                             <FaRegTrashAlt size={20} />
@@ -127,6 +142,12 @@ const Cart = () => {
    bg-button hover:bg-button/70 transition-all duration-300 shadow-sm
    hover:shadow-[inset_0_0_4px_2px_rgba(215,89,161,0.36),0_0_6px_2px_rgba(215,89,161,0.36)] w-full self-center
    px-9 xs:px-4 xs:text-sm sm:text-base sm:px-6 lg:px-8 py-2 mt-4 tracking-widest"
+                onClick={() => {
+                  if (cart?.items?.length) {
+                    handleCheckout(cart?.items)
+                  }
+                  console.log(cart)
+                }}
               >
                 К оплате
               </button>
