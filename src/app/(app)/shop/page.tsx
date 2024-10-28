@@ -22,7 +22,7 @@ export default function Page() {
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products?page=${currentPage}&limit=8`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products?page=${currentPage}&limit=8`,
       )
       const data = await res.json()
       setProducts(data.docs as Product[])

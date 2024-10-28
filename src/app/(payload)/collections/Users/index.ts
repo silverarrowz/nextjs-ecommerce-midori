@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload/types'
 import adminsAndUser from './access/adminsAndUser'
 import { checkRole } from './checkRole'
 import { admins } from '../../access/admins'

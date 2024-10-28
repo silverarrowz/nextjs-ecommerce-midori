@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload/types'
 import { admins } from '../access/admins'
 
 const Categories: CollectionConfig = {

@@ -83,7 +83,7 @@ const Page = () => {
   const fetchProducts = async (query: string, categoryId: string) => {
     setIsLoading(true)
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/allproducts?query=${encodeURIComponent(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/allproducts?query=${encodeURIComponent(
         query,
       )}&categoryId=${encodeURIComponent(categoryId)}&page=${encodeURIComponent(currentPage)}`,
     )

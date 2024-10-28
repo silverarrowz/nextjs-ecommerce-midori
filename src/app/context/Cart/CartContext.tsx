@@ -104,7 +104,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
           const initialCart = await Promise.all(
             parsedCart.items.map(async ({ product, quantity }) => {
               const res = await fetch(
-                `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/products/${product}`,
+                `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products/${product}`,
               )
               const data = await res.json()
               return {
@@ -174,7 +174,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       try {
         const syncCartToPayload = async () => {
-          const req = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/${user.id}`, {
+          const req = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/${user.id}`, {
             // Make sure to include cookies with fetch
             credentials: 'include',
             method: 'PATCH',

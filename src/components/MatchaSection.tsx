@@ -50,7 +50,7 @@ const MatchaSection = () => {
     const fetchProducts = async () => {
       const res = await fetch(
         `${
-          process.env.NEXT_PUBLIC_PAYLOAD_URL
+          process.env.NEXT_PUBLIC_SERVER_URL
         }/api/allproducts?limit=8&categoryId=${encodeURIComponent('6713885202adac4858d83115')}`,
       )
       const { docs: products }: { docs: Product[] } = await res.json()

@@ -33,7 +33,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = useCallback<Login>(async (args) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/login`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -57,7 +57,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           }
         }
       } else {
-        const {user} = await res.json()
+        const { user } = await res.json()
         setUser(user)
         setStatus('loggedIn')
         return user
@@ -70,7 +70,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const register = useCallback<Register>(async (email, password, passwordConfirm) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/create`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/create`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -107,7 +107,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = useCallback<Logout>(async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/logout`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/logout`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -129,7 +129,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchMe = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/users/me`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`, {
           method: 'GET',
           credentials: 'include',
           headers: {
