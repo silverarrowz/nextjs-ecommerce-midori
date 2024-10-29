@@ -19,43 +19,19 @@ export type CartItems =
   | null;
 
 export interface Config {
-  auth: {
-    users: UserAuthOperations;
-  };
   collections: {
     users: User;
     media: Media;
     products: Product;
     categories: Category;
-    'payload-locked-documents': PayloadLockedDocument;
+    orders: Order;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
-  };
-  db: {
-    defaultIDType: string;
   };
   globals: {};
   locale: null;
   user: User & {
     collection: 'users';
-  };
-}
-export interface UserAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
   };
 }
 /**
@@ -89,7 +65,7 @@ export interface Product {
   description?: string | null;
   price: number;
   amount?: string | null;
-  image?: (string | null) | Media;
+  image?: string | Media | null;
   relatedProducts?: (string | Product)[] | null;
   categories?: (string | Category)[] | null;
   updatedAt: string;
@@ -126,32 +102,21 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-locked-documents".
+ * via the `definition` "orders".
  */
-export interface PayloadLockedDocument {
+export interface Order {
   id: string;
-  document?:
-    | ({
-        relationTo: 'users';
-        value: string | User;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'products';
-        value: string | Product;
-      } | null)
-    | ({
-        relationTo: 'categories';
-        value: string | Category;
-      } | null);
-  globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: string | User;
-  };
+  orderedBy?: (string | null) | User;
+  items?:
+    | {
+        product?: (string | null) | Product;
+        quantity?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  total: number;
+  isPaid?: boolean | null;
+  stripeSessionId?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -188,13 +153,6 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "auth".
- */
-export interface Auth {
-  [k: string]: unknown;
 }
 
 

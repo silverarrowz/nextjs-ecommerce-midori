@@ -1,13 +1,23 @@
 import { CollectionConfig } from 'payload/types'
+import { admins } from '../access/admins'
 
 const Orders: CollectionConfig = {
   slug: 'orders',
+  access: {
+    read: () => true,
+    create: () => true,
+    update: () => true,
+    delete: admins,
+  },
+  admin: {
+    useAsTitle: 'total',
+  },
   fields: [
     {
       name: 'orderedBy',
       type: 'relationship',
       relationTo: 'users',
-      required: true,
+      required: false,
     },
     {
       name: 'items',
@@ -17,12 +27,10 @@ const Orders: CollectionConfig = {
           name: 'product',
           type: 'relationship',
           relationTo: 'products',
-          required: true,
         },
         {
           name: 'quantity',
           type: 'number',
-          required: true,
         },
       ],
     },
@@ -32,14 +40,14 @@ const Orders: CollectionConfig = {
       required: true,
     },
     {
-      name: 'status',
-      type: 'text',
-      defaultValue: 'paid',
+      name: 'isPaid',
+      type: 'checkbox',
+      defaultValue: 'false',
     },
     {
       name: 'stripeSessionId',
       type: 'text',
-      required: true,
+      required: false,
     },
   ],
 }
