@@ -6,23 +6,30 @@ import { useCart } from '@/app/context/Cart/CartContext'
 import { useUser } from '@/app/context/UserContext'
 
 import { loadStripe } from '@stripe/stripe-js'
-import { CartItems } from '@/app/(payload)/payload-types'
+import { CartItems, Product } from '@/app/(payload)/payload-types'
+import { useRouter } from 'next/navigation'
 
 const Cart = () => {
-  const { cartIsEmpty, deleteItemFromCart, hasInitializedCart, cart, addOneItem, deleteOneItem } =
-    useCart()
+  const { cartIsEmpty, deleteItemFromCart, cart, addOneItem, deleteOneItem } = useCart()
+
+  const { user } = useUser()
+  const router = useRouter()
 
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
   const handleCheckout = async (cartItems: CartItems) => {
-    const stripe = await stripePromise
-    const response = await fetch('/api/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cartItems }),
-    })
-    const session = await response.json()
-    await stripe?.redirectToCheckout({ sessionId: session.id })
+    if (user) {
+      const stripe = await stripePromise
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cartItems }),
+      })
+      const session = await response.json()
+      await stripe?.redirectToCheckout({ sessionId: session.id })
+    } else {
+      router.push('/signin?redirectTo=cart')
+    }
   }
 
   return (
@@ -35,7 +42,11 @@ const Cart = () => {
         <SheetContent className="w-full sm:w-[30rem] sm:max-w-[30rem]">
           <SheetHeader>
             <SheetTitle>
-              <h2 className="font-serif text-center text-3xl mb-6">Корзина</h2>
+              <SheetClose asChild>
+                <Link href={'/cart'}>
+                  <h2 className="font-serif text-center text-3xl mb-6">Корзина</h2>
+                </Link>
+              </SheetClose>
             </SheetTitle>
           </SheetHeader>
           {cartIsEmpty ? (
@@ -47,14 +58,12 @@ const Cart = () => {
             </p>
           ) : (
             <div>
-              <div className="flex flex-col gap-4 overflow-y-scroll max-h-[60vh]">
+              <div className="flex flex-col gap-4 overflow-y-scroll pr-2 max-h-[60vh]">
                 {cart?.items?.map((item, index) => {
                   if (typeof item.product === 'object') {
-                    const {
-                      quantity,
-                      product,
-                      product: { id, name, image, price },
-                    } = item
+                    const { quantity, product } = item
+
+                    const { id, name, image, price } = product as Product
 
                     return (
                       <div
@@ -86,7 +95,8 @@ const Cart = () => {
                             </p>
                             <p className="text-sm text-heading opacity-80">
                               Стоимость:{' '}
-                              <span className="font-bold opacity-100">{price * quantity}</span> руб.
+                              <span className="font-bold opacity-100">{price * quantity!}</span>{' '}
+                              руб.
                             </p>
                           </div>
                         </div>
@@ -94,7 +104,7 @@ const Cart = () => {
                         <div className="flex justify-end w-full sm:w-fit gap-4">
                           <div className="flex items-center h-fit gap-2 self-center">
                             <button
-                              onClick={() => deleteOneItem(product)}
+                              onClick={() => deleteOneItem(product!)}
                               disabled={item.quantity === 1}
                               className="text-3xl  leading-3 bg-background-light rounded-full p-2 disabled:bg-slate-200 disabled:text-slate-400"
                             >
@@ -102,7 +112,7 @@ const Cart = () => {
                             </button>
                             {item.quantity}
                             <button
-                              onClick={() => addOneItem(product)}
+                              onClick={() => addOneItem(product!)}
                               className="text-3xl leading-3 bg-background-light p-2 rounded-full"
                             >
                               <FaPlus size={12} />
@@ -110,7 +120,7 @@ const Cart = () => {
                           </div>
                           <button
                             onClick={() => {
-                              deleteItemFromCart(product)
+                              deleteItemFromCart(product!)
                             }}
                           >
                             <FaRegTrashAlt size={20} />
@@ -127,7 +137,7 @@ const Cart = () => {
                   Итого:{' '}
                   <span className="font-bold text-2xl text-heading-dark">
                     {cart?.items?.reduce(
-                      (total, item) => total + (item.product?.price || 0) * item.quantity,
+                      (total, item) => total + (item.product?.price || 0) * item.quantity!,
                       0,
                     )}
                   </span>{' '}
@@ -137,20 +147,22 @@ const Cart = () => {
                   Доставка: <span className="font-bold">0</span> руб.
                 </p>
               </div>
-              <button
-                className="rounded-full border-2 font-bold border-heading
+              <SheetClose asChild>
+                <button
+                  className="rounded-full border-2 font-bold border-heading
    bg-button hover:bg-button/70 transition-all duration-300 shadow-sm
    hover:shadow-[inset_0_0_4px_2px_rgba(215,89,161,0.36),0_0_6px_2px_rgba(215,89,161,0.36)] w-full self-center
    px-9 xs:px-4 xs:text-sm sm:text-base sm:px-6 lg:px-8 py-2 mt-4 tracking-widest"
-                onClick={() => {
-                  if (cart?.items?.length) {
-                    handleCheckout(cart?.items)
-                  }
-                  console.log(cart)
-                }}
-              >
-                К оплате
-              </button>
+                  onClick={() => {
+                    if (cart?.items?.length) {
+                      handleCheckout(cart?.items)
+                    }
+                    console.log(cart)
+                  }}
+                >
+                  К оплате
+                </button>
+              </SheetClose>
             </div>
           )}
         </SheetContent>
