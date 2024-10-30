@@ -23,7 +23,7 @@ export default function Page() {
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cartItems }),
+        body: JSON.stringify({ cartItems, user }),
       })
       const session = await response.json()
       await stripe?.redirectToCheckout({ sessionId: session.id })

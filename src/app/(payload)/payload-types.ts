@@ -44,6 +44,7 @@ export interface User {
   cart?: {
     items?: CartItems;
   };
+  orders?: (string | Order)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -116,7 +117,6 @@ export interface Order {
     | null;
   total: number;
   isPaid?: boolean | null;
-  stripeSessionId?: string | null;
   updatedAt: string;
   createdAt: string;
 }

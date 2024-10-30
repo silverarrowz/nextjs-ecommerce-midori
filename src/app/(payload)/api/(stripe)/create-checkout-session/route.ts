@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { CartItems, Product } from '../../../payload-types'
+import { CartItems, Product, User } from '../../../payload-types'
 import { getPayload } from 'payload'
 import configPromise from '@/app/(payload)/payload.config'
 
@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 export async function POST(req: NextRequest) {
   const payload = await getPayload({ config: configPromise })
-  const { cartItems }: { cartItems: CartItems } = await req.json()
+  const { cartItems, user }: { cartItems: CartItems; user: User } = await req.json()
 
   try {
     const items = cartItems?.map((item) => ({
@@ -32,22 +32,36 @@ export async function POST(req: NextRequest) {
       quantity: item.quantity as number,
     }))
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: lineItems,
-      mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}`,
-    })
-
-    await payload.create({
+    const order = await payload.create({
       collection: 'orders',
       data: {
         total,
         isPaid: false,
+        orderedBy: user.id,
         items,
-        stripeSessionId: session.id,
       },
+    })
+
+    await payload.update({
+      collection: 'users',
+      id: user.id,
+      data: {
+        orders: [
+          ...(user.orders?.map((order) => (typeof order === 'string' ? order : order.id)) || []),
+          order.id as string,
+        ],
+      },
+    })
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      mode: 'payment',
+      metadata: {
+        orderId: order.id,
+      },
+      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/success?orderId=${order.id}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}`,
     })
 
     return NextResponse.json({ id: session.id }, { status: 200 })

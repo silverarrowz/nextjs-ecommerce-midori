@@ -44,11 +44,6 @@ const Orders: CollectionConfig = {
       type: 'checkbox',
       defaultValue: 'false',
     },
-    {
-      name: 'stripeSessionId',
-      type: 'text',
-      required: false,
-    },
   ],
 }
 

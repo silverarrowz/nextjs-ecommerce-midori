@@ -66,5 +66,12 @@ export const Users: CollectionConfig = {
         },
       ],
     },
+    {
+      label: 'Заказы',
+      name: 'orders',
+      type: 'relationship',
+      relationTo: 'orders',
+      hasMany: true,
+    },
   ],
 }

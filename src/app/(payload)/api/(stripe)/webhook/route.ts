@@ -29,8 +29,11 @@ export async function POST(req: Request) {
       await payload.update({
         collection: 'orders',
         where: {
-          stripeSessionId: {
-            equals: session.id,
+          // stripeSessionId: {
+          //   equals: session.id,
+          // },
+          id: {
+            equals: session.metadata!.orderId,
           },
         },
         data: {
