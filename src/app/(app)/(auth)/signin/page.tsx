@@ -14,9 +14,13 @@ export type FormValues = {
 const Page = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
+
   useEffect(() => {
     if (searchParams.get('authAction')) {
       setAction(searchParams.get('authAction') as 'login' | 'register')
+    }
+    if (searchParams.get('redirectTo')) {
+      setRedirectBack(searchParams.get('redirectTo') as string)
     }
   }, [])
 
@@ -29,28 +33,34 @@ const Page = () => {
   const { login, register: registerUser, user } = useUser()
   const [isLoading, setIsLoading] = useState(false)
   const [action, setAction] = useState<'login' | 'register'>('login')
+  const [redirectBack, setRedirectBack] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
   const password = useRef({})
   password.current = watch('password', '')
+
+  if (user) {
+    router.push(redirectBack ? redirectBack : '/')
+  }
 
   const onSubmit = async (data: FormValues) => {
     setIsLoading(true)
     if (action === 'register' && data.passwordConfirm) {
       try {
         await registerUser(data.email, data.password, data.passwordConfirm)
-        router.push('/')
+
+        router.push(redirectBack ? redirectBack : '/')
       } catch (error) {
         console.log(error)
-        setErrorMessage(error.message)
+        setErrorMessage((error as Error).message)
       }
     } else {
       try {
         await login(data)
-        router.push('/')
+        router.push(redirectBack ? redirectBack : '/')
       } catch (error) {
         console.log(error)
-        setErrorMessage(error.message)
+        setErrorMessage((error as Error).message)
         setTimeout(() => {
           setErrorMessage('')
         }, 5000)
@@ -58,10 +68,6 @@ const Page = () => {
     }
 
     setIsLoading(false)
-  }
-
-  if (user) {
-    router.push('/')
     return
   }
 

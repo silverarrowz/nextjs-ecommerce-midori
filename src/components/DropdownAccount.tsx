@@ -3,7 +3,7 @@
 import { useUser } from '@/app/context/UserContext'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 
 interface DropdownAccountProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -15,10 +15,13 @@ const DropdownAccount = forwardRef<HTMLDivElement, DropdownAccountProps>(
   ({ isOpen, closeDropdown, ...props }, ref) => {
     const { user, logout, status } = useUser()
     const router = useRouter()
+    const pathname = usePathname()
+
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
     useEffect(() => {
       setIsDropdownOpen(isOpen)
+      console.log(pathname)
     }, [isOpen])
 
     const handleLogout = async () => {
@@ -65,12 +68,18 @@ const DropdownAccount = forwardRef<HTMLDivElement, DropdownAccountProps>(
         ) : (
           <ul className="flex flex-col gap-4 w-max">
             <li>
-              <Link href="/signin?authAction=login" className="hover:opacity-80">
+              <Link
+                href={`/signin?authAction=login&redirectTo=${encodeURIComponent(pathname)}`}
+                className="hover:opacity-80"
+              >
                 Войти
               </Link>
             </li>
             <li>
-              <Link href="/signin?authAction=register" className="hover:opacity-80">
+              <Link
+                href={`/signin?authAction=register&redirectTo=${encodeURIComponent(pathname)}`}
+                className="hover:opacity-80"
+              >
                 Регистрация
               </Link>
             </li>
