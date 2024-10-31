@@ -4,21 +4,19 @@ import type { Metadata } from 'next'
 
 import config from '@/app/(payload)/payload.config'
 import { NotFoundPage, generatePageMetadata } from '@payloadcms/next/views'
-import { importMap } from '../importMap'
 
 type Args = {
-  params: Promise<{
+  params: {
     segments: string[]
-  }>
-  searchParams: Promise<{
+  }
+  searchParams: {
     [key: string]: string | string[]
-  }>
+  }
 }
 
 export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
   generatePageMetadata({ config, params, searchParams })
 
-const NotFound = ({ params, searchParams }: Args) =>
-  NotFoundPage({ config, params, searchParams, importMap })
+const NotFound = ({ params, searchParams }: Args) => NotFoundPage({ config, params, searchParams })
 
 export default NotFound

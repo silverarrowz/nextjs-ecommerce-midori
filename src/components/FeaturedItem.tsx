@@ -26,7 +26,7 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
          sm:h-32 lg:h-48"
         >
           <img
-            src={image.url}
+            src={typeof image === 'string' ? image : image!.url!}
             alt={name}
             className="object-cover max-h-full w-full
             "

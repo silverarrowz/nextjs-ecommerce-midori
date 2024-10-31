@@ -22,11 +22,6 @@ export type CartContextType = {
   deleteItemFromCart: (product: Product) => void
   cartIsEmpty: boolean | undefined
   clearCart: () => void
-  isProductInCart: (product: Product) => boolean
-  //   cartTotal: {
-  //     formatted: string
-  //     raw: number
-  //   }
   hasInitializedCart: boolean
 }
 
@@ -40,7 +35,7 @@ export const useCart = () => {
   return context
 }
 
-const arrayHasItems = (array) => Array.isArray(array) && array.length > 0
+const arrayHasItems = (array: any[]) => Array.isArray(array) && array.length > 0
 
 /**
  * ensure that cart items are fully populated, filter out any items that are not
@@ -48,8 +43,8 @@ const arrayHasItems = (array) => Array.isArray(array) && array.length > 0
  */
 const flattenCart = (cart: User['cart']): User['cart'] => ({
   ...cart,
-  items: cart.items
-    .map((item) => {
+  items: cart!
+    .items!.map((item) => {
       if (!item?.product || typeof item?.product !== 'object') {
         return null
       }
@@ -76,14 +71,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [cart, dispatchCart] = useReducer(cartReducer, {})
 
-  //   const [total, setTotal] = useState<{
-  //     formatted: string
-  //     raw: number
-  //   }>({
-  //     formatted: '0.00',
-  //     raw: 0,
-  //   })
-
   const hasInitialized = useRef(false)
   const [hasInitializedCart, setHasInitialized] = useState(false)
 
@@ -102,16 +89,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (parsedCart?.items && parsedCart?.items?.length > 0) {
           const initialCart = await Promise.all(
-            parsedCart.items.map(async ({ product, quantity }) => {
-              const res = await fetch(
-                `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products/${product}`,
-              )
-              const data = await res.json()
-              return {
-                product: data,
-                quantity,
-              }
-            }),
+            parsedCart.items.map(
+              async ({ product, quantity }: { product: Product; quantity: number }) => {
+                const res = await fetch(
+                  `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products/${product}`,
+                )
+                const data = await res.json()
+                return {
+                  product: data,
+                  quantity,
+                }
+              },
+            ),
           )
 
           dispatchCart({
@@ -161,7 +150,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // upon logging in, merge and sync the existing local cart to Payload
   useEffect(() => {
     // wait until we have attempted authentication (the user is either an object or `null`)
-    if (!hasInitialized.current || user === undefined || !cart.items) return
+    if (!hasInitialized.current || user === undefined || !cart?.items) return
 
     const flattenedCart = flattenCart(cart)
 
@@ -202,26 +191,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setHasInitialized(true)
   }, [cart])
 
-  const isProductInCart = useCallback(
-    (incomingProduct: Product): boolean => {
-      let isInCart = false
-      const { items: itemsInCart } = cart || {}
-      if (Array.isArray(itemsInCart) && itemsInCart.length > 0) {
-        isInCart = Boolean(
-          itemsInCart.find(({ product }) =>
-            typeof product === 'string'
-              ? product === incomingProduct.id
-              : product?.id === incomingProduct.id,
-          ),
-        )
-      }
-      return isInCart
-    },
-    [cart],
-  )
-
-  // this method can be used to add new items AND update existing ones
-  const addItemToCart = useCallback((incomingItem) => {
+  const addItemToCart = useCallback((incomingItem: CartItem) => {
     dispatchCart({
       type: 'ADD_ITEM',
       payload: incomingItem,
@@ -255,30 +225,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }, [])
 
-  //  // calculate the new cart total whenever the cart changes
-  //   useEffect(() => {
-  //     if (!hasInitialized) return
-
-  //     const newTotal =
-  //       cart?.items?.reduce((acc, item) => {
-  //         return (
-  //           acc +
-  //           (typeof item.product === 'object'
-  //             ? JSON.parse(item?.product?.priceJSON || '{}')?.data?.[0]?.unit_amount *
-  //               (typeof item?.quantity === 'number' ? item?.quantity : 0)
-  //             : 0)
-  //         )
-  //       }, 0) || 0
-
-  //     setTotal({
-  //       formatted: (newTotal / 100).toLocaleString('en-US', {
-  //         style: 'currency',
-  //         currency: 'USD',
-  //       }),
-  //       raw: newTotal,
-  //     })
-  //   }, [cart, hasInitialized])
-
   return (
     <CartContext.Provider
       value={{
@@ -287,10 +233,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         addOneItem,
         deleteOneItem,
         deleteItemFromCart,
-        cartIsEmpty: hasInitializedCart && !arrayHasItems(cart?.items),
+        cartIsEmpty: hasInitializedCart && !arrayHasItems(cart?.items!),
         clearCart,
-        isProductInCart,
-        // cartTotal: total,
         hasInitializedCart,
       }}
     >
