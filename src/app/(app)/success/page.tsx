@@ -1,11 +1,10 @@
 // 'use client'
 
-import { Order, Product } from '@/app/(payload)/payload-types'
+import { Media, Order, Product } from '@/app/(payload)/payload-types'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
 import { getPayload } from 'payload'
-import { useEffect, useState } from 'react'
 import configPromise from '@/app/(payload)/payload.config'
+import { FaHeart } from 'react-icons/fa'
 
 interface PageProps {
   searchParams: {
@@ -14,36 +13,6 @@ interface PageProps {
 }
 
 const Page = async ({ searchParams }: PageProps) => {
-  // const searchParams = useSearchParams()
-  // const orderId = searchParams.get('orderId')
-
-  // const [products, setProducts] = useState<Product[]>([])
-
-  // useEffect(() => {
-  //   const fetchOrder = async () => {
-  //     const res = await fetch(
-  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products`,
-  //     )
-  //     const data = await res.json()
-  //     setProducts(data.docs as Product[])
-
-  //     console.log(data)
-  //   }
-  //   fetchOrder()
-  // }, [])
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const res = await fetch(
-  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products`,
-  //     )
-  //     const data = await res.json()
-  //     setProducts(data.docs as Product[])
-
-  //     console.log(data)
-  //   }
-  //   fetchProducts()
-  // }, [])
   const orderId = searchParams.orderId
   const payload = await getPayload({ config: configPromise })
 
@@ -58,13 +27,14 @@ const Page = async ({ searchParams }: PageProps) => {
   })
 
   const [order] = orders
-  const { items, total } = order as Order
+  const { items, total } = order as any as Order
 
   return (
-    <div className="pt-24">
+    <div className="pt-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-heading bg-background-light">
         <div className="flex flex-col justify-start gap-20 p-10 sm:p-24">
           <div className="text-center">
+            <FaHeart size={32} className="text-center mx-auto mb-10" />
             <h1
               className="z-50 text-3xl md:text-4xl lg:text-6xl mb-8 lg:mb-12
       w-fit font-serif text-heading-dark text-center relative inline-block"
@@ -100,32 +70,36 @@ const Page = async ({ searchParams }: PageProps) => {
 
         <div className="flex flex-col justify-center gap-4 bg-background-lightest p-16">
           <div className="space-y-4">
-            {items?.map((item) => (
-              <Link
-                href={`/product/${item.product.id}`}
-                key={item.id}
-                className="p-4 border border-zinc-300 shadow-sm rounded-md flex justify-between items-center hover:shadow-md transition-all"
-              >
-                <div className="flex items-center space-x-4">
-                  <img
-                    src={item.product?.image?.url}
-                    alt={item.product?.name}
-                    className="w-16 h-16 object-cover rounded"
-                  />
-                  <div>
-                    <h2 className="font-light text-lg">{item.product.name}</h2>
-                    <p className="text-sm font-light">x {item.quantity}</p>
+            {items?.map((item) => {
+              const product = item.product as Product
+
+              return (
+                <Link
+                  href={`/product/${product.id}`}
+                  key={item.id}
+                  className="p-4 border bg-white border-zinc-300 shadow-sm rounded-md flex flex-col xs:flex-row justify-between items-center hover:shadow-md transition-all"
+                >
+                  <div className="flex flex-col gap-4 items-center xs:flex-row">
+                    <img
+                      src={(product.image as Media).url as string}
+                      alt={product.name}
+                      className="w-full xs:w-16 xs:h-16 object-cover rounded"
+                    />
+                    <div className="flex xs:flex-col xs:items-start gap-2 xs:gap-0 items-center justify-center mb-2 xs:mb-0">
+                      <h2 className="font-light text-sm sm:text-lg">{product.name}</h2>
+                      <p className="text-sm font-light">x {item.quantity}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="text-right">
-                  <p>
-                    <span className="font-semibold">{item.product.price * item.quantity} </span>руб.
-                  </p>
-                </div>
-              </Link>
-            ))}
+                  <div className="text-center xs:text-right">
+                    <p>
+                      <span className="font-semibold">{product.price * item.quantity!} </span>руб.
+                    </p>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
-          <div className="mt-6 text-lg text-right font-light">
+          <div className="mt-6 text-lg text-center xs:text-right font-light">
             Итого: <span className="text-2xl font-bold leading-none">{total} </span>
             руб.
           </div>

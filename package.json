@@ -17,6 +17,7 @@
   "dependencies": {
     "@payloadcms/db-mongodb": "3.0.0-beta.35",
     "@payloadcms/next": "3.0.0-beta.35",
+    "@payloadcms/plugin-stripe": "3.0.0-beta.35",
     "@payloadcms/richtext-lexical": "3.0.0-beta.35",
     "@radix-ui/react-dialog": "^1.1.2",
     "@stripe/react-stripe-js": "^2.8.1",
@@ -42,6 +43,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@swc/core": "^1.7.40",
     "@types/node": "^22.5.4",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",

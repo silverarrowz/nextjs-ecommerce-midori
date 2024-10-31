@@ -126,7 +126,7 @@ const MatchaSection = () => {
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
         px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
-        my-4 border border-button rounded shadow animate-pulse"
+        my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
                 <svg
@@ -145,7 +145,7 @@ const MatchaSection = () => {
               <div className="h-2 bg-button rounded-full  mb-2.5"></div>
               <div className="h-2 bg-button rounded-full "></div>
 
-              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+              <div className="w-full h-8 bg-button rounded-full mt-3 xs:mt-6 sm:mt-8"></div>
 
               <span className="sr-only">Loading...</span>
             </div>
@@ -154,7 +154,7 @@ const MatchaSection = () => {
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
         px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
-        my-4 border border-button rounded shadow animate-pulse"
+        my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
                 <svg
@@ -173,7 +173,7 @@ const MatchaSection = () => {
               <div className="h-2 bg-button rounded-full  mb-2.5"></div>
               <div className="h-2 bg-button rounded-full "></div>
 
-              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+              <div className="w-full h-8 bg-button rounded-full mt-3 xs:mt-6 sm:mt-8"></div>
 
               <span className="sr-only">Loading...</span>
             </div>
@@ -182,7 +182,7 @@ const MatchaSection = () => {
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
         px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
-        my-4 border border-button rounded shadow animate-pulse"
+        my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
                 <svg
@@ -201,7 +201,7 @@ const MatchaSection = () => {
               <div className="h-2 bg-button rounded-full  mb-2.5"></div>
               <div className="h-2 bg-button rounded-full "></div>
 
-              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+              <div className="w-full h-8 bg-button rounded-full mt-3 xs:mt-6 sm:mt-8"></div>
 
               <span className="sr-only">Loading...</span>
             </div>
@@ -210,7 +210,7 @@ const MatchaSection = () => {
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
         px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
-        my-4 border border-button rounded shadow animate-pulse"
+        my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
                 <svg
@@ -229,7 +229,7 @@ const MatchaSection = () => {
               <div className="h-2 bg-button rounded-full  mb-2.5"></div>
               <div className="h-2 bg-button rounded-full "></div>
 
-              <div className="w-full h-8 bg-button rounded-full mt-8"></div>
+              <div className="w-full h-8 bg-button rounded-full mt-3 xs:mt-6 sm:mt-8"></div>
 
               <span className="sr-only">Loading...</span>
             </div>

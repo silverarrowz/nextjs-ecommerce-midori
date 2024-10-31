@@ -55,9 +55,9 @@ const DropdownAccount = forwardRef<HTMLDivElement, DropdownAccountProps>(
               </p>
             </li>
             <li>
-              <button onClick={() => console.log(user)} className="hover:opacity-80">
+              <Link href={'/account'} className="hover:opacity-80">
                 Личный кабинет
-              </button>
+              </Link>
             </li>
             <li>
               <button onClick={handleLogout} className="hover:opacity-80">

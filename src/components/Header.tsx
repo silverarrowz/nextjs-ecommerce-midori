@@ -10,6 +10,7 @@ import DropdownMenu from './DropdownMenu'
 import LineSvg from '@/lib/LineSvg'
 import DropdownAccount from './DropdownAccount'
 import Searchbar from './Searchbar'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false)
@@ -18,6 +19,12 @@ const Header = () => {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const searchbarRef = useRef<HTMLFormElement>(null)
+
+  const pathname = usePathname()
+
+  useEffect(() => {
+    setIsDropdownAccountOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -48,7 +55,7 @@ const Header = () => {
   return (
     <header
       className="w-full p-3 md:px-5 xs:py-6 grid grid-cols-3 items-center 
-      fixed z-[1111] bg-background/75 backdrop-blur-md
+      fixed z-[1111] bg-background/70 backdrop-blur-md
     "
     >
       <nav className="hidden lg:block">

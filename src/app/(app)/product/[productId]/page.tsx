@@ -20,11 +20,13 @@ const Page = async ({ params }: PageProps) => {
 
   const payload = await getPayload({ config: configPromise })
 
-  const product = await payload.findByID({
+  const res = await payload.findByID({
     collection: 'products',
     id: productId,
     disableErrors: true,
   })
+
+  const product = res as any as Product
 
   const relatedProducts = product?.relatedProducts
 

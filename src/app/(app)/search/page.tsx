@@ -13,7 +13,7 @@ import {
 import LineSvg from '@/lib/LineSvg'
 import { cn } from '@/lib/utils'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
 
 const Page = () => {
   const router = useRouter()
@@ -59,13 +59,13 @@ const Page = () => {
     }
   }
 
-  const handleCategoryChange = (e) => {
+  const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCategoryId(e.target.value)
     handlePageChange(1)
     updateCategoryParam(e.target.value)
   }
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setQuery(e.target.value)
     handlePageChange(1)
@@ -74,7 +74,7 @@ const Page = () => {
     }, 2000)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     handlePageChange(1)
     updateQueryParam(query)

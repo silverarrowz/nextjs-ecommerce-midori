@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { CartItems, Product, User } from '../../../payload-types'
+import { CartItems, Media, Product, User } from '../../../payload-types'
 import { getPayload } from 'payload'
 import configPromise from '@/app/(payload)/payload.config'
 
@@ -59,6 +59,7 @@ export async function POST(req: NextRequest) {
       mode: 'payment',
       metadata: {
         orderId: order.id,
+        userId: user.id,
       },
       success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/success?orderId=${order.id}`,
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}`,

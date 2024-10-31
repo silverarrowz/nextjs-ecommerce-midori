@@ -137,7 +137,8 @@ const Cart = () => {
                   Итого:{' '}
                   <span className="font-bold text-2xl text-heading-dark">
                     {cart?.items?.reduce(
-                      (total, item) => total + (item.product?.price || 0) * item.quantity!,
+                      (total, item) =>
+                        total + ((item.product as Product).price || 0) * item.quantity!,
                       0,
                     )}
                   </span>{' '}

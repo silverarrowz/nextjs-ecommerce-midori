@@ -81,7 +81,7 @@ const AboutSection = () => {
             <Link
               href={'/shop'}
               className="rounded-3xl  border-2 border-foreground
-              bg-button font-bold tracking-wider
+              bg-button font-bold tracking-wider text-sm xs:text-base
               group hover:italic hover:bg-transparent
               hover:shadow-[inset_0_0_4px_3px_rgba(215,89,161,0.36),0_0_6px_3px_rgba(215,89,161,0.42)]
               px-7 py-1  transition duration-300

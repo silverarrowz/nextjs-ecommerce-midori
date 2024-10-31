@@ -29,9 +29,6 @@ export async function POST(req: Request) {
       await payload.update({
         collection: 'orders',
         where: {
-          // stripeSessionId: {
-          //   equals: session.id,
-          // },
           id: {
             equals: session.metadata!.orderId,
           },
@@ -43,6 +40,25 @@ export async function POST(req: Request) {
     } catch (error) {
       console.error('Error occurred while updating order', error)
       return new Response(JSON.stringify({ error: 'Failed to update order' }), { status: 500 })
+    }
+
+    try {
+      await payload.update({
+        collection: 'users',
+        where: {
+          id: {
+            equals: session.metadata!.userId,
+          },
+        },
+        data: {
+          cart: {
+            items: [],
+          },
+        },
+      })
+    } catch (error) {
+      console.error('Error occurred while updating user cart', error)
+      return new Response(JSON.stringify({ error: 'Failed to update user cart' }), { status: 500 })
     }
   }
 

@@ -1,12 +1,13 @@
 import { CollectionConfig } from 'payload/types'
-import { admins } from '../access/admins'
+import { admins } from '../../access/admins'
+import { adminsOrOrderedBy } from './access/adminsOrOrderedBy'
 
 const Orders: CollectionConfig = {
   slug: 'orders',
   access: {
-    read: () => true,
+    read: adminsOrOrderedBy,
     create: () => true,
-    update: () => true,
+    update: adminsOrOrderedBy,
     delete: admins,
   },
   admin: {
