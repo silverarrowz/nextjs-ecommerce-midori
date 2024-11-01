@@ -51,7 +51,7 @@ const MatchaSection = () => {
       const res = await fetch(
         `${
           process.env.NEXT_PUBLIC_SERVER_URL
-        }/api/allproducts?limit=8&categoryId=${encodeURIComponent('6713885202adac4858d83115')}`,
+        }/api/allproducts?limit=8&categoryId=${encodeURIComponent('672495c7ea032be30f9d3d0b')}`,
       )
       const { docs: products }: { docs: Product[] } = await res.json()
       setFeaturedProducts(products)
@@ -64,10 +64,10 @@ const MatchaSection = () => {
     return (
       <section
         id="mochi"
-        className="bg-white mt-16 sm:mt-28 md:mt-48 
-    lg:mt-4 
+        className="bg-white mt-16 sm:mt-28 md:mt-48
+    lg:mt-4
     pt-8 pb-4
-    relative overflow-hidden 
+    relative overflow-hidden
     text-center mx-auto"
       >
         <h2
@@ -125,7 +125,7 @@ const MatchaSection = () => {
             <div
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem]
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -153,7 +153,7 @@ const MatchaSection = () => {
             <div
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem]
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -181,7 +181,7 @@ const MatchaSection = () => {
             <div
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem]
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -209,7 +209,7 @@ const MatchaSection = () => {
             <div
               role="status"
               className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem]
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -242,7 +242,7 @@ const MatchaSection = () => {
     <section
       id="matcha"
       className="
-    pt-8 
+    pt-8
     relative overflow-hidden bg-background"
     >
       <div className="relative z-50 w-auto">
@@ -304,7 +304,7 @@ const MatchaSection = () => {
       </p>
 
       <div
-        className="max-w-[94%] text-center 
+        className="max-w-[94%] text-center
       mx-auto relative"
       >
         <div className="mb-4 mt-2 text-right mx-2 xs:mx-4 z-10">

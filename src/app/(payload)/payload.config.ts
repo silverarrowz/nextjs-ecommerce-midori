@@ -2,6 +2,7 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
+import fs from 'fs'
 import { buildConfig } from 'payload/config'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
@@ -14,6 +15,11 @@ import Orders from './collections/Orders'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const certPath = path.join(__dirname, 'root.pem')
+fs.writeFileSync(certPath, Buffer.from(process.env.MONGODB_CERT as string, 'base64'))
+
+const connectionString = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?authSource=admin`
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -25,7 +31,12 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+    url: connectionString,
+    connectOptions: {
+      tls: true,
+      tlsCAFile: certPath,
+      authSource: process.env.DB_NAME,
+    },
   }),
   sharp,
   plugins: [],
