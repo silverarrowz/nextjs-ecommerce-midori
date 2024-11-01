@@ -19,7 +19,7 @@ const FeaturedSection = () => {
       const res = await fetch(
         `${
           process.env.NEXT_PUBLIC_SERVER_URL
-        }/api/allproducts?limit=8&categoryId=${encodeURIComponent('6713884202adac4858d830dc')}`,
+        }/api/allproducts?limit=8&categoryId=${encodeURIComponent('672495d5ea032be30f9d3d26')}`,
       )
       const { docs: products }: { docs: Product[] } = await res.json()
       setFeaturedProducts(products)

@@ -136,8 +136,7 @@ const Page = () => {
             className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
           >
             <option value="">Все категории</option>
-            <option value="6713885202adac4858d83115">Матча</option>
-            <option value="6713884202adac4858d830dc">Моти</option>
+            <option value="672495c7ea032be30f9d3d0b">Матча</option>
           </select>
           <button
             type="submit"
@@ -182,8 +181,7 @@ const Page = () => {
             className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
           >
             <option value="">Все категории</option>
-            <option value="6713885202adac4858d83115">Матча</option>
-            <option value="6713884202adac4858d830dc">Моти</option>
+            <option value="672495d5ea032be30f9d3d26">Моти</option>
           </select>
           <button
             type="submit"
@@ -226,8 +224,8 @@ const Page = () => {
           className="px-3 py-2 rounded-lg text-heading focus:border-2 hover:bg-button border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
         >
           <option value="">Все категории</option>
-          <option value="6713885202adac4858d83115">Матча</option>
-          <option value="6713884202adac4858d830dc">Моти</option>
+          <option value="672495c7ea032be30f9d3d0b">Матча</option>
+          <option value="672495d5ea032be30f9d3d26">Моти</option>
         </select>
         <button
           type="submit"
