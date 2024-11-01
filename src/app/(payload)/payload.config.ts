@@ -25,7 +25,8 @@ export default buildConfig({
     user: Users.slug,
   },
   cors: ['https://checkout.stripe.com', `${process.env.NEXT_PUBLIC_SERVER_URL}` || ''],
-
+  csrf: ['https://checkout.stripe.com', process.env.NEXT_PUBLIC_SERVER_URL || ''],
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
   collections: [Users, Media, Products, Categories, Orders],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
