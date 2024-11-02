@@ -52,6 +52,7 @@ export default buildConfig({
           generateFileURL: (args: any) => {
             return `${process.env.S3_HOST}/${args.prefix}/${args.filename}`
           },
+          disableLocalStorage: true,
         },
       },
       bucket: process.env.S3_BUCKET!,
