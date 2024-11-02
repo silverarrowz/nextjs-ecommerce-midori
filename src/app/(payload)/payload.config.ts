@@ -1,6 +1,7 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { s3Storage } from '@payloadcms/storage-s3'
 import path from 'path'
 import fs from 'fs'
 import { buildConfig } from 'payload/config'
@@ -12,6 +13,7 @@ import { Media } from './collections/Media'
 import Products from './collections/Products'
 import Categories from './collections/Categories'
 import Orders from './collections/Orders'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -42,5 +44,25 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    s3Storage({
+      collections: {
+        ['media']: {
+          prefix: 'products',
+          generateFileURL: (args: any) => {
+            return `${process.env.S3_HOST}/${args.prefix}/${args.filename}`
+          },
+        },
+      },
+      bucket: process.env.S3_BUCKET,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+        region: process.env.S3_REGION,
+        endpoint: 'https://cyoqnnxapkpamfxoseuo.supabase.co/storage/v1/s3',
+      },
+    }),
+  ],
 })
