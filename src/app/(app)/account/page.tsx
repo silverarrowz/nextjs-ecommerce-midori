@@ -33,7 +33,7 @@ const Page = () => {
       }
     }
     fetchOrders()
-  }, [])
+  }, [user])
 
   return (
     <div className="pt-20">
