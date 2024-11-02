@@ -52,21 +52,19 @@ export default buildConfig({
         ['media']: {
           prefix: 'products',
           generateFileURL: (args: any) => {
-            return `https://${process.env.S3_HOST}/${process.env.S3_PATHNAME}/${args.prefix}/${args.filename}`
+            return `${process.env.S3_HOST}/${args.prefix}/${args.filename}`
           },
-          disableLocalStorage: true,
         },
       },
-      bucket: process.env.S3_BUCKET!,
+      bucket: process.env.S3_BUCKET,
       config: {
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
         },
-        region: process.env.S3_REGION!,
-        endpoint: process.env.S3_ENDPOINT!,
+        region: process.env.S3_REGION,
+        endpoint: 'https://cyoqnnxapkpamfxoseuo.supabase.co/storage/v1/s3',
       },
-      disableLocalStorage: true,
     }),
   ],
 })
