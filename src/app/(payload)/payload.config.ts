@@ -17,7 +17,7 @@ import Orders from './collections/Orders'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const certPath = path.join(dirname, 'root.pem')
+const certPath = path.join(__dirname, 'root.crt')
 fs.writeFileSync(certPath, Buffer.from(process.env.MONGODB_CERT as string, 'base64'))
 
 const connectionString = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
