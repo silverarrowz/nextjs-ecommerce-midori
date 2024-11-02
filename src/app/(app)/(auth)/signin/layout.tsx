@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import AppSuspense from '../../../lib/AppSuspense'
+import AppSuspense from '../../../../lib/AppSuspense'
 
 export const metadata: Metadata = {
   title: 'Вход | MiDori | Моти ручной работы',
