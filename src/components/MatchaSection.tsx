@@ -10,6 +10,8 @@ import Link from 'next/link'
 import { Product } from '@/app/(payload)/payload-types'
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi'
 
+import { matchaId } from '@/lib/category-ids'
+
 const MatchaSection = () => {
   const slider = useRef(null)
 
@@ -51,7 +53,7 @@ const MatchaSection = () => {
       const res = await fetch(
         `${
           process.env.NEXT_PUBLIC_SERVER_URL
-        }/api/allproducts?limit=8&categoryId=${encodeURIComponent('6713885202adac4858d83115')}`,
+        }/api/allproducts?limit=8&categoryId=${encodeURIComponent(matchaId)}`,
       )
       const { docs: products }: { docs: Product[] } = await res.json()
       setFeaturedProducts(products)
