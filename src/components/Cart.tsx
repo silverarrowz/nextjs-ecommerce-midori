@@ -75,7 +75,7 @@ const Cart = () => {
                           <SheetClose asChild>
                             <Link
                               href={`/product/${id}`}
-                              className="flex-shrink-0 flex-grow overflow-hidden w-[50px] xs:w-[160px] xs:h-24 xs:flex-grow-0 sm:w-[90px] relative"
+                              className="flex-shrink-0 flex-grow w-[50px] xs:w-[160px] h-24 xs:flex-grow-0 sm:w-[90px] relative"
                             >
                               <Image
                                 fill

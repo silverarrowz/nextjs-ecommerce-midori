@@ -22,13 +22,6 @@ const MobileSearchbar = ({ className, closeSheet }: MobileSearchbarProps) => {
     closeSheet()
   }
 
-  //   useEffect(() => {
-  //     setSearchQuery('')
-  //     if (isVisible && inputRef.current) {
-  //       inputRef.current.focus()
-  //     }
-  //   }, [isVisible])
-
   return (
     <form onSubmit={handleSubmit} className={cn('px-4 overflow-hidden ', className)}>
       <div className="w-full relative">
@@ -39,7 +32,7 @@ const MobileSearchbar = ({ className, closeSheet }: MobileSearchbarProps) => {
         <input
           type="text"
           placeholder="Поиск..."
-          className="w-full py-2 border-b border-heading-dark focus:border-heading-dark focus:border-b-2 focus:outline-none bg-transparent text-heading-dark placeholder:text-heading-dark placeholder:opacity-70 overflow-hidden relative"
+          className="w-full py-2 border-b rounded-none border-heading-dark focus:border-heading-dark focus:border-b-2 focus:outline-none bg-transparent text-heading-dark placeholder:text-heading-dark placeholder:opacity-70 overflow-hidden relative"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
