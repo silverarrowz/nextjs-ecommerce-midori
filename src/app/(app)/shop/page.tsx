@@ -18,6 +18,7 @@ export default function Page() {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [products, setProducts] = useState<Product[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,6 +28,7 @@ export default function Page() {
       const data = await res.json()
       setProducts(data.docs as Product[])
       setTotalPages(data.totalPages)
+      setIsLoading(false)
     }
     fetchProducts()
   }, [currentPage])
@@ -36,6 +38,8 @@ export default function Page() {
       setCurrentPage(newPage)
     }
   }
+
+  if (isLoading) return <div className="flex justify-center items-center h-screen">Загрузка...</div>
 
   return (
     <div className="pt-28 text-center mx-4 sm:mx-16">
