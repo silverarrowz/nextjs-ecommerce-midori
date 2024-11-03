@@ -34,7 +34,7 @@ export default function Page() {
   }
 
   return (
-    <div className="pt-28 mx-4 md:mx-6 lg:mx-16 flex flex-col items-stretch">
+    <div className="pt-24 mx-4 md:mx-6 lg:mx-16 flex flex-col items-stretch">
       <h1
         className="z-50 text-3xl md:text-4xl lg:text-6xl mb-12 lg:mb-16
       w-fit font-serif text-heading-dark text-center relative inline-block"
