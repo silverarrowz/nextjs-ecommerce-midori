@@ -81,7 +81,7 @@ const Page = async ({ params }: PageProps) => {
         <li className="text-sm">{product.name}</li>
       </ol>
       <div className="flex flex-col md:flex-row gap-10 px-10 py-16">
-        <div className="mx-auto w-full h-[500px] md:w-1/2 relative overflow-hidden">
+        <div className="mx-auto w-full h-[170px] sm:h-[360px] md:h-[300px] md:w-1/2 relative overflow-hidden">
           <Image
             fill
             src={typeof product.image === 'string' ? product.image : product.image!.url!}
