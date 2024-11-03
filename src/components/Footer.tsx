@@ -59,14 +59,14 @@ const Footer = () => {
             <h3 className="text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-serif">Магазин</h3>
             <ul className="flex flex-col gap-2 *:hover:*:opacity-60  *:tracking-tighter md:text-sm lg:text-base">
               <li>
-                <Link href={'/shop'}>Моти</Link>
+                <Link href={'/#mochi'}>Моти</Link>
               </li>
               <li>
-                <Link href={'/shop'}>Матча</Link>
+                <Link href={'/#matcha'}>Матча</Link>
               </li>
 
               <li>
-                <Link href={'/contacts'}>Скидки и акции</Link>
+                <Link href={'#'}>Скидки и акции</Link>
               </li>
               <li>
                 <Link href={'/shop'}>Все продукты</Link>
