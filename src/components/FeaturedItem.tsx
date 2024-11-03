@@ -38,7 +38,7 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
         <div className="flex-grow">
           <h3
             className="text-xl md:text-2xl xl:text-3xl 
-          leading-none 
+          leading-none max-w-[98%] mx-auto 
            tracking-widest font-serif line-clamp-2 sm:mt-4 lg:mt-0"
           >
             {name}
