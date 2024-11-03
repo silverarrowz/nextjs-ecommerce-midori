@@ -4,6 +4,7 @@ import Link from 'next/link'
 import AddToCartButton from '@/components/AddToCartButton'
 import ProductReel from '@/components/ProductReel'
 import { Product } from '@/app/(payload)/payload-types'
+import Image from 'next/image'
 
 interface PageProps {
   params: {
@@ -58,11 +59,12 @@ const Page = async ({ params }: PageProps) => {
         <li className="text-sm">{product.name}</li>
       </ol>
       <div className="flex flex-col md:flex-row gap-10 px-10 py-16">
-        <div className="mx-auto w-full h-full md:w-1/2">
-          <img
+        <div className="mx-auto w-full h-[500px] md:w-1/2 relative overflow-hidden">
+          <Image
+            fill
             src={typeof product.image === 'string' ? product.image : product.image!.url!}
             alt={product.name}
-            className="w-full h-auto object-cover"
+            className="object-top object-contain"
           />
         </div>
         <div className="md:w-1/2 flex flex-col gap-4">

@@ -17,8 +17,8 @@ import Orders from './collections/Orders'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const certPath = '/tmp/root.crt'
-// const certPath = path.join(__dirname, 'root.crt')
+// const certPath = '/tmp/root.crt'
+const certPath = path.join(__dirname, 'root.crt')
 fs.writeFileSync(certPath, Buffer.from(process.env.MONGODB_CERT as string, 'base64'))
 
 const connectionString = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
@@ -51,7 +51,7 @@ export default buildConfig({
         ['media']: {
           prefix: 'products',
           generateFileURL: (args: any) => {
-            return `${process.env.S3_HOST}/${args.prefix}/${args.filename}`
+            return `https://${process.env.S3_HOST}/${process.env.S3_PATHNAME}/${args.prefix}/${args.filename}`
           },
           disableLocalStorage: true,
         },

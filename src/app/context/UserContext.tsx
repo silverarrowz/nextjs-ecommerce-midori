@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { User } from '../(payload)/payload-types'
+import { useRouter } from 'next/navigation'
 
 type Login = (args: { email: string; password: string }) => Promise<User>
 type Register = (email: string, password: string, passwordConfirm: string) => Promise<void>
@@ -30,6 +31,8 @@ export const useUser = () => {
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [status, setStatus] = useState<undefined | 'loggedOut' | 'loggedIn'>()
+
+  const router = useRouter()
 
   const login = useCallback<Login>(async (args) => {
     try {
@@ -141,10 +144,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           setUser(meUser || null)
           setStatus(meUser ? 'loggedIn' : undefined)
         } else {
+          router.push('/signin?redirectTo=account')
           throw new Error('Error fetching user')
         }
       } catch (e) {
         setUser(null)
+        router.push('/signin?redirectTo=account')
         throw new Error('Error fetching user')
       }
     }
