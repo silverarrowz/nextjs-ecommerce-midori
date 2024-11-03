@@ -76,7 +76,7 @@ const Page = () => {
         </div>
 
         <div className="flex flex-col gap-3 bg-background-lightest px-4 py-8 xs:p-10">
-          <h2 className="font-serif text-2xl xs:mb-6">История заказов</h2>
+          <h2 className="font-serif text-2xl mb-4 xs:mb-6">История заказов</h2>
           <div className="max-h-[70vh] overflow-y-scroll pr-4">
             {orders?.length ? (
               orders.map((order) => {

@@ -116,7 +116,7 @@ const Page = () => {
   w-fit font-serif text-heading-dark relative inline-block text-center"
         >
           Поиск
-          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#822966" />
+          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#292461" />
         </h1>
         <form
           className="mt-4 mb-24 h-10 flex flex-col sm:flex-row gap-2 justify-center"
@@ -160,7 +160,7 @@ const Page = () => {
   w-fit font-serif text-heading-dark relative inline-block text-center"
         >
           Поиск
-          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#822966" />
+          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#292461" />
         </h1>
         <form
           className="mt-4 mb-24 h-10 flex flex-col sm:flex-row gap-2 justify-center"
@@ -206,7 +206,10 @@ const Page = () => {
   w-fit font-serif text-heading-dark relative inline-block text-center"
       >
         Поиск
-        <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#822966" />
+        <LineSvg
+          className="-left-4 -right-4 -bottom-10 lg:-bottom-20 mx-auto"
+          strokeColor="#292461"
+        />
       </h1>
       <form
         className="mt-4 mb-24 h-10 flex flex-col sm:flex-row gap-2 justify-center"
