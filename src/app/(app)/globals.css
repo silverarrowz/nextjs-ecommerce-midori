@@ -4,12 +4,12 @@
 
 :root {
   --button: 90 100% 94;
-  --button-hover: hsl(105, 87%, 67%);
-  --heading-dark: #822966;
-  --heading: #792b59;
-  --background-light: hsl(97, 100%, 88%);
+  --button-hover: hsl(104, 100%, 90%);
+  --heading-dark: #292461;
+  --heading: #2d225f;
+  --background-light: hsl(198, 100%, 88%);
   --background-lightest: hsl(95, 75%, 97%);
-  --shadow: #d759a1;
+  --shadow: hsl(199, 100%, 79%);
 }
 
 body {
@@ -24,8 +24,8 @@ body {
 
 @layer base {
   :root {
-    --background: 97 100% 88%;
-    --foreground: 319 52% 34%;
+    --background: 199 100% 80%;
+    --foreground: 245 46% 29%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
