@@ -25,7 +25,11 @@ const MobileSearchbar = ({ className, closeSheet }: MobileSearchbarProps) => {
   return (
     <form onSubmit={handleSubmit} className={cn('px-4 overflow-hidden ', className)}>
       <div className="w-full relative">
-        <button type="submit" className="absolute right-2.5 top-2.5 z-[1404] text-heading">
+        <button
+          type="submit"
+          className="absolute right-2.5 top-2.5 z-[1404] text-heading outline-none border-0 active:outline-none"
+          aria-label="search button"
+        >
           <IoSearch className="size-5" />
         </button>
 

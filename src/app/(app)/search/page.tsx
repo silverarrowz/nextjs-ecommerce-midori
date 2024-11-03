@@ -116,7 +116,7 @@ const Page = () => {
   w-fit font-serif text-heading-dark relative inline-block"
         >
           Поиск
-          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#f0f8f0" />
+          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#822966" />
         </h1>
         <form
           className="mt-4 mb-24 h-10 flex flex-col sm:flex-row gap-2 justify-center"
@@ -134,7 +134,7 @@ const Page = () => {
             value={categoryId}
             name="category"
             id="category"
-            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
+            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm bg-white cursor-pointer"
           >
             <option value="">Все категории</option>
             <option value={matchaId}>Матча</option>
@@ -142,7 +142,7 @@ const Page = () => {
           </select>
           <button
             type="submit"
-            className="sm:rounded-full shadow-sm hover:shadow-none hover:outline-2 outline-heading rounded-lg sm:none bg-button px-4 py-2 transition-colors duration-200 
+            className="sm:rounded-full shadow-sm hover:shadow-none hover:outline-2 outline-heading rounded-lg sm:none bg-white px-4 py-2 transition-colors duration-200 
         mt-4 sm:mt-0   tracking-wider"
           >
             Искать
@@ -160,7 +160,7 @@ const Page = () => {
   w-fit font-serif text-heading-dark relative inline-block"
         >
           Поиск
-          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#f0f8f0" />
+          <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#822966" />
         </h1>
         <form
           className="mt-4 mb-24 h-10 flex flex-col sm:flex-row gap-2 justify-center"
@@ -180,7 +180,7 @@ const Page = () => {
             disabled
             name="category"
             id="category"
-            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
+            className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm bg-white cursor-pointer"
           >
             <option value="">Все категории</option>
             <option value={matchaId}>Матча</option>
@@ -189,7 +189,7 @@ const Page = () => {
           <button
             type="submit"
             disabled
-            className="sm:rounded-full shadow-none rounded-lg sm:bg-button py-2 px-4 transition-colors duration-200 
+            className="sm:rounded-full shadow-none rounded-lg sm:bg-white py-2 px-4 transition-colors duration-200 
         mt-4 sm:mt-0   tracking-wider"
           >
             Искать
@@ -206,7 +206,7 @@ const Page = () => {
   w-fit font-serif text-heading-dark relative inline-block"
       >
         Поиск
-        <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#f0f8f0" />
+        <LineSvg className="-left-4 -right-4 -bottom-10 lg:-bottom-20" strokeColor="#822966" />
       </h1>
       <form
         className="mt-4 mb-24 h-10 flex flex-col sm:flex-row gap-2 justify-center"
@@ -224,7 +224,7 @@ const Page = () => {
           value={categoryId}
           name="category"
           id="category"
-          className="px-3 py-2 rounded-lg text-heading focus:border-2 hover:bg-button border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
+          className="px-3 py-2 rounded-lg text-heading focus:border-2 hover:bg-button border-heading-dark focus:outline-none shadow-sm bg-white cursor-pointer"
         >
           <option value="">Все категории</option>
           <option value={matchaId}>Матча</option>
@@ -232,7 +232,7 @@ const Page = () => {
         </select>
         <button
           type="submit"
-          className="rounded-lg sm:rounded-full shadow-sm hover:shadow-none bg-button hover:outline-2 outline-heading mt-4 sm:mt-0 px-4 py-2 transition-colors duration-200 
+          className="rounded-lg sm:rounded-full shadow-sm hover:shadow-none bg-button hover:outline-2 outline-heading mt-4 sm:mt-0 px-4 py-2 transition-colors duration-200 bg-white 
           tracking-wider hover:outline outline-2"
         >
           Искать
