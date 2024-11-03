@@ -2,6 +2,7 @@ import { getPayload } from 'payload'
 import configPromise from '@/app/(payload)/payload.config'
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
 export async function GET(req: NextRequest) {
   const payload = await getPayload({ config: configPromise })
 
