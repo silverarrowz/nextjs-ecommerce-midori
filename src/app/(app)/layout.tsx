@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Mulish, Cormorant_Garamond, Playfair_Display, Bona_Nova } from 'next/font/google'
+import { Mulish, Bona_Nova } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -15,7 +15,7 @@ const sans = Mulish({
 
 const serif = Bona_Nova({
   weight: ['400', '700'],
-  variable: '--font-cormorant-garamond',
+  variable: '--font-bona-nova',
   style: ['italic', 'normal'],
   subsets: ['cyrillic', 'latin'],
 })
