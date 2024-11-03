@@ -143,6 +143,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         if (res.ok) {
           const { user: meUser } = await res.json()
           setUser(meUser || null)
+          if (!meUser) {
+            router.push(`/signin?redirectTo=${encodeURIComponent(pathname)}`)
+          }
           setStatus(meUser ? 'loggedIn' : undefined)
         } else {
           router.push(`/signin?redirectTo=${encodeURIComponent(pathname)}`)

@@ -27,7 +27,6 @@ export default function Page() {
       const data = await res.json()
       setProducts(data.docs as Product[])
       setTotalPages(data.totalPages)
-      console.log(data)
     }
     fetchProducts()
   }, [currentPage])

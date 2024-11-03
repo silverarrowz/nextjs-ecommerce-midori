@@ -21,7 +21,6 @@ const DropdownAccount = forwardRef<HTMLDivElement, DropdownAccountProps>(
 
     useEffect(() => {
       setIsDropdownOpen(isOpen)
-      console.log(pathname)
     }, [isOpen])
 
     const handleLogout = async () => {
