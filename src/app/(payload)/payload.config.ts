@@ -53,7 +53,7 @@ export default buildConfig({
         ['media']: {
           prefix: 'products',
           generateFileURL: (args: any) => {
-            return `${process.env.S3_HOST}/${args.prefix}/${args.filename}`
+            return `https://${process.env.S3_HOST}/${process.env.S3_PATHNAME}/${args.prefix}/${args.filename}`
           },
           disableLocalStorage: true,
         },

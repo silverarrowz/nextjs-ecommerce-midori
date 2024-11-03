@@ -5,7 +5,6 @@ import AddToCartButton from '@/components/AddToCartButton'
 import ProductReel from '@/components/ProductReel'
 import { Product } from '@/app/(payload)/payload-types'
 import Image from 'next/image'
-import { Metadata } from 'next'
 
 interface PageProps {
   params: {
