@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { User } from '../(payload)/payload-types'
+import { usePathname, useRouter } from 'next/navigation'
 
 type Login = (args: { email: string; password: string }) => Promise<User>
 type Register = (email: string, password: string, passwordConfirm: string) => Promise<void>
@@ -30,6 +31,9 @@ export const useUser = () => {
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [status, setStatus] = useState<undefined | 'loggedOut' | 'loggedIn'>()
+
+  const router = useRouter()
+  const pathname = usePathname()
 
   const login = useCallback<Login>(async (args) => {
     try {
@@ -139,12 +143,19 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         if (res.ok) {
           const { user: meUser } = await res.json()
           setUser(meUser || null)
+          if (!meUser) {
+            if (pathname === '/account') {
+              router.push(`/signin?redirectTo=${encodeURIComponent(pathname)}`)
+            }
+          }
           setStatus(meUser ? 'loggedIn' : undefined)
         } else {
+          router.push(`/signin?redirectTo=${encodeURIComponent(pathname)}`)
           throw new Error('Error fetching user')
         }
       } catch (e) {
         setUser(null)
+        router.push(`/signin?redirectTo=${encodeURIComponent(pathname)}`)
         throw new Error('Error fetching user')
       }
     }

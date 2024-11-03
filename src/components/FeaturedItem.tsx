@@ -1,6 +1,7 @@
 import { Product } from '@/app/(payload)/payload-types'
 import AddToCartButton from './AddToCartButton'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface FeaturedItemProps {
   product: Product
@@ -20,15 +21,16 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
         h-[20rem] xs:h-[22rem] lg:h-[24rem] 
         transition-transform duration-300 hover:scale-105"
     >
-      <Link href={`/product/${product.id}`}>
+      <Link href={`/product/${product.id}`} className="flex flex-col items-center">
         <div
-          className="max-w-[14rem] h-32 xs:h-40 sm:max-w-none
-         sm:h-32 lg:h-48"
+          className="w-44 sm:w-52 h-32 xs:h-36 relative
+          overflow-hidden"
         >
-          <img
+          <Image
+            fill
             src={typeof image === 'string' ? image : image!.url!}
             alt={name}
-            className="object-cover max-h-full w-full
+            className="object-contain max-h-full w-full
             "
           />
         </div>

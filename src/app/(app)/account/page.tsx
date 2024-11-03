@@ -8,13 +8,8 @@ import { useUser } from '@/app/context/UserContext'
 
 const Page = () => {
   const { user } = useUser()
-  const router = useRouter()
 
   const [isLoading, setIsLoading] = useState(true)
-
-  if (!user) {
-    router.push('/signin?redirectTo=account')
-  }
 
   const [orders, setOrders] = useState<Order[]>([])
 
@@ -33,7 +28,7 @@ const Page = () => {
       }
     }
     fetchOrders()
-  }, [])
+  }, [user])
 
   return (
     <div className="pt-20">

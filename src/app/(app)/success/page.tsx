@@ -79,7 +79,7 @@ const Page = async ({ searchParams }: PageProps) => {
                   key={item.id}
                   className="p-4 border bg-white border-zinc-300 shadow-sm rounded-md flex flex-col xs:flex-row justify-between items-center hover:shadow-md transition-all"
                 >
-                  <div className="flex flex-col gap-4 items-center xs:flex-row">
+                  <div className="flex flex-col gap-4 items-center xs:flex-row ">
                     <img
                       src={(product.image as Media).url as string}
                       alt={product.name}

@@ -5,6 +5,7 @@ import { useCart } from '@/app/context/Cart/CartContext'
 import { useUser } from '@/app/context/UserContext'
 import LineSvg from '@/lib/LineSvg'
 import { loadStripe } from '@stripe/stripe-js'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { FaMinus, FaPlus, FaRegTrashAlt } from 'react-icons/fa'
@@ -63,9 +64,10 @@ export default function Page() {
                       <div className="flex gap-4 justify-stretch w-full sm:w-fit">
                         <Link
                           href={`/product/${id}`}
-                          className="flex-shrink-0 flex-grow overflow-hidden w-[50px] xs:w-[160px] xs:h-24 xs:flex-grow-0  sm:w-[90px]"
+                          className="flex-shrink-0 flex-grow overflow-hidden w-[50px] xs:w-[160px] xs:h-24 xs:flex-grow-0 sm:w-[90px] relative"
                         >
-                          <img
+                          <Image
+                            fill
                             src={typeof image === 'string' ? image : image!.url!}
                             alt={name}
                             className="h-[60px] xs:h-full sm:h-[80px] w-full object-cover"

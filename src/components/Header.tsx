@@ -72,19 +72,19 @@ const Header = () => {
             <DropdownMenu isOpen={isDropdownMenuOpen} />
           </li>
           <li>
-            <Link className="relative group hover:opacity-85" href={'/about'}>
+            <Link className="relative group hover:opacity-85" href={'/#about'}>
               О нас
               <LineSvg className="-left-4 -right-4 -bottom-7 hidden group-hover:block" />
             </Link>
           </li>
           <li>
-            <Link className="relative group hover:opacity-85" href={'/contacts'}>
+            <Link className="relative group hover:opacity-85" href={'/'}>
               Контакты
               <LineSvg className="-left-2 -right-2 -bottom-8 hidden group-hover:block" />
             </Link>
           </li>
           <li>
-            <Link className="relative group hover:opacity-85" href={'/reviews'}>
+            <Link className="relative group hover:opacity-85" href={'/#reviews'}>
               Отзывы
               <LineSvg className="-left-2 -right-2 -bottom-7 hidden group-hover:block" />
             </Link>
