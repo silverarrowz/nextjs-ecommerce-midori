@@ -7,6 +7,7 @@ import Slider from 'react-slick'
 
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi'
 import { IoMdStar } from 'react-icons/io'
+import Image from 'next/image'
 
 const ReviewsSection = () => {
   const settings = {
@@ -153,7 +154,8 @@ const ReviewsSection = () => {
           <div key={review.username} className="">
             <div className="flex flex-col items-center gap-4 xs:px-2 md:px-0 md:w-52 lg:w-72">
               <div className="w-full h-0 pb-[100%] relative">
-                <img
+                <Image
+                  fill
                   src={review.image}
                   alt={review.name}
                   className="object-cover absolute top-0 left-0 w-full h-full"

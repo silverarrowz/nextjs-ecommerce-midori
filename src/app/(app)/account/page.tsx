@@ -2,19 +2,14 @@
 
 import { Media, Order, Product } from '@/app/(payload)/payload-types'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+
 import { useEffect, useState } from 'react'
 import { useUser } from '@/app/context/UserContext'
 
 const Page = () => {
   const { user } = useUser()
-  const router = useRouter()
 
   const [isLoading, setIsLoading] = useState(true)
-
-  if (!user) {
-    router.push('/signin?redirectTo=account')
-  }
 
   const [orders, setOrders] = useState<Order[]>([])
 
