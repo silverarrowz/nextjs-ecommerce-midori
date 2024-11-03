@@ -11,6 +11,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import LineSvg from '@/lib/LineSvg'
+import { matchaId, mochiId } from '@/lib/category-ids'
 import { cn } from '@/lib/utils'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
@@ -136,8 +137,8 @@ const Page = () => {
             className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
           >
             <option value="">Все категории</option>
-            <option value="672495c7ea032be30f9d3d0b">Матча</option>
-            <option value="672495d5ea032be30f9d3d26">Моти</option>
+            <option value={matchaId}>Матча</option>
+            <option value={mochiId}>Моти</option>
           </select>
           <button
             type="submit"
@@ -182,8 +183,8 @@ const Page = () => {
             className="px-3 py-2 rounded-lg text-heading focus:border border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
           >
             <option value="">Все категории</option>
-            <option value="672495c7ea032be30f9d3d0b">Матча</option>
-            <option value="672495d5ea032be30f9d3d26">Моти</option>
+            <option value={matchaId}>Матча</option>
+            <option value={mochiId}>Моти</option>
           </select>
           <button
             type="submit"
@@ -226,8 +227,8 @@ const Page = () => {
           className="px-3 py-2 rounded-lg text-heading focus:border-2 hover:bg-button border-heading-dark focus:outline-none shadow-sm  cursor-pointer"
         >
           <option value="">Все категории</option>
-          <option value="672495c7ea032be30f9d3d0b">Матча</option>
-          <option value="672495d5ea032be30f9d3d26">Моти</option>
+          <option value={matchaId}>Матча</option>
+          <option value={mochiId}>Моти</option>
         </select>
         <button
           type="submit"

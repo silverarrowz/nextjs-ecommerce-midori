@@ -49,7 +49,7 @@ const MobileNav = () => {
               </li>
               <li>
                 <SheetClose asChild>
-                  <Link href={'/#contacts'} onClick={() => setIsOpen(false)}>
+                  <Link href={'/#'} onClick={() => setIsOpen(false)}>
                     Контакты
                   </Link>
                 </SheetClose>
