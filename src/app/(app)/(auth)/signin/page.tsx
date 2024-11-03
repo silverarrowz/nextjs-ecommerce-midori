@@ -72,7 +72,7 @@ const Page = () => {
   }
 
   return (
-    <div className="pt-48 px-4 w-full sm:px-0 mx-auto mb-32 text-center h-[80vh] flex flex-col justify-center items-center">
+    <div className="pt-48 px-4 w-full sm:px-0 mx-auto mb-52 text-center h-[70vh] flex flex-col justify-center items-center">
       <h1
         className="z-50 text-5xl
       w-fit font-serif text-heading-dark relative inline-block"

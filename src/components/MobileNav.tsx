@@ -9,18 +9,6 @@ import { useEffect, useState } from 'react'
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false)
 
-  // useEffect(() => {
-  //   const handleSearchSubmit = (event: MouseEvent | KeyboardEvent) => {}
-
-  //   document.addEventListener('mousedown', handleSearchSubmit)
-  //   document.addEventListener('keydown', handleSearchSubmit)
-
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleSearchSubmit)
-  //     document.removeEventListener('keydown', handleSearchSubmit)
-  //   }
-  // }, [])
-
   return (
     <div className="lg:hidden flex items-center">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>

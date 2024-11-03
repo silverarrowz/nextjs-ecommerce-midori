@@ -23,7 +23,7 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
     >
       <Link href={`/product/${product.id}`} className="flex flex-col items-center">
         <div
-          className="w-44 sm:w-52 h-32 xs:h-36 relative
+          className="w-44 xs:w-52 sm:w-36 h-32 xs:h-36 relative
           overflow-hidden"
         >
           <Image
