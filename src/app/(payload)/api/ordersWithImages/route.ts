@@ -2,6 +2,7 @@ import { getPayload } from 'payload'
 import configPromise from '@/app/(payload)/payload.config'
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
 export async function GET(req: NextRequest) {
   const payload = await getPayload({ config: configPromise })
 
@@ -23,6 +24,6 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ status: 404, error: 'No orders found matching the query' })
     }
   } catch (error) {
-    return NextResponse.json({ status: 500, error: 'Server error' })
+    return NextResponse.json({ status: 500, error: (error as Error).message })
   }
 }

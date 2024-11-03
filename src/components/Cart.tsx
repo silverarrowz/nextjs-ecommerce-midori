@@ -8,6 +8,7 @@ import { useUser } from '@/app/context/UserContext'
 import { loadStripe } from '@stripe/stripe-js'
 import { CartItems, Product } from '@/app/(payload)/payload-types'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 const Cart = () => {
   const { cartIsEmpty, deleteItemFromCart, cart, addOneItem, deleteOneItem } = useCart()
@@ -74,9 +75,10 @@ const Cart = () => {
                           <SheetClose asChild>
                             <Link
                               href={`/product/${id}`}
-                              className="flex-shrink-0 flex-grow overflow-hidden w-[50px] xs:w-[160px] xs:h-24 xs:flex-grow-0  sm:w-[90px]"
+                              className="flex-shrink-0 flex-grow overflow-hidden w-[50px] xs:w-[160px] xs:h-24 xs:flex-grow-0 sm:w-[90px] relative"
                             >
-                              <img
+                              <Image
+                                fill
                                 src={typeof image === 'string' ? image : image!.url!}
                                 alt={name}
                                 className="h-[60px] xs:h-full sm:h-[80px] w-full object-cover"

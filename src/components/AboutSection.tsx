@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { GiFruitTree } from 'react-icons/gi'
 import { IoSparklesOutline } from 'react-icons/io5'
