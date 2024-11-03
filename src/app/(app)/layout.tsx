@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { Mulish, Cormorant_Garamond } from 'next/font/google'
+import { Mulish, Cormorant_Garamond, Playfair_Display, Bona_Nova } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { UserProvider } from '../context/UserContext'
 import { CartProvider } from '../context/Cart/CartContext'
+import ScrollButton from '@/components/ScrollButton'
 
 const sans = Mulish({
   weight: ['300', '400', '700'],
@@ -12,8 +13,8 @@ const sans = Mulish({
   variable: '--font-mulish',
 })
 
-const serif = Cormorant_Garamond({
-  weight: ['300', '400', '700'],
+const serif = Bona_Nova({
+  weight: ['400', '700'],
   variable: '--font-cormorant-garamond',
   style: ['italic', 'normal'],
   subsets: ['cyrillic', 'latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({
           <CartProvider>
             <Header />
             {children}
+            <ScrollButton />
             <Footer />
           </CartProvider>
         </UserProvider>

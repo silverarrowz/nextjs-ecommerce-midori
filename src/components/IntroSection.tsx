@@ -4,7 +4,7 @@ const IntroSection = () => {
   return (
     <section
       className="relative h-screen flex 
-    justify-center lg:justify-end pt-14 lg:min-h-screen lg:mb-36"
+    justify-center lg:justify-end pt-14 lg:min-h-screen "
     >
       <div
         className="absolute bottom-10 left-0
@@ -44,28 +44,6 @@ const IntroSection = () => {
             </Link>
           </div>
         </div>
-      </div>
-
-      <div
-        className="absolute -z-10 -bottom-20 sm:-bottom-32
-        md:-bottom-48 
-        lg:-bottom-36
-    left-0 w-full overflow-hidden leading-[0]"
-      >
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-[140%] h-[80px] 
-          md:w-[110%]"
-        >
-          <path
-            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-            className=""
-            fill="#ffffff"
-          ></path>
-        </svg>
       </div>
     </section>
   )
