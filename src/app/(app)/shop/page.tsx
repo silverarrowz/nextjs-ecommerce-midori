@@ -44,7 +44,10 @@ export default function Page() {
       w-fit font-serif text-heading-dark relative inline-block"
       >
         Каталог
-        <LineSvg className="-left-4 -right-4 -bottom-12 lg:-bottom-20" strokeColor="#822966" />
+        <LineSvg
+          className="-left-4 -right-4 -bottom-12 lg:-bottom-20 mx-auto"
+          strokeColor="#292461"
+        />
       </h1>
 
       <div className="w-full flex justify-center gap-6 xs:gap-4 md:gap-6 flex-wrap">
