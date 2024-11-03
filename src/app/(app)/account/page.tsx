@@ -31,7 +31,7 @@ const Page = () => {
   }, [user])
 
   return (
-    <div className="pt-20">
+    <div className="pt-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-heading bg-white">
         <div className="flex flex-col justify-start  p-16">
           <div className="">
