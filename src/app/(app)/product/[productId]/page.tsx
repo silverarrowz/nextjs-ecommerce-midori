@@ -5,10 +5,32 @@ import AddToCartButton from '@/components/AddToCartButton'
 import ProductReel from '@/components/ProductReel'
 import { Product } from '@/app/(payload)/payload-types'
 import Image from 'next/image'
+import { Metadata } from 'next'
 
 interface PageProps {
   params: {
     productId: string
+  }
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { productId } = params
+  const payload = await getPayload({ config: configPromise })
+  const res = await payload.findByID({
+    collection: 'products',
+    id: productId,
+    disableErrors: true,
+  })
+
+  const product = res as any as Product
+
+  return {
+    title: `${product.name} | Midori | Моти ручной работы`,
+    description: product.description || 'Матча и моти ручной работы',
+    icons: {
+      icon: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
+    },
   }
 }
 
