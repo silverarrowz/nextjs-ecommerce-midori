@@ -18,12 +18,12 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
         my-4
         text-heading-dark  
         items-center z-10
-        h-[20rem] xs:h-[22rem] lg:h-[24rem] 
+        h-[20rem] xs:h-[22rem] md:h-[25rem] lg:h-[24rem] 
         transition-transform duration-300 hover:scale-105"
     >
       <Link href={`/product/${product.id}`} className="flex flex-col items-center">
         <div
-          className="w-44 sm:w-52 h-32 xs:h-36 relative
+          className="w-44 sm:w-36 md:w-44 xl:w-48 h-32 xs:h-36 relative
           overflow-hidden"
         >
           <Image
@@ -38,7 +38,7 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
         <div className="flex-grow">
           <h3
             className="text-xl md:text-2xl xl:text-3xl 
-          leading-none 
+          leading-none max-w-[98%] mx-auto 
            tracking-widest font-serif line-clamp-2 sm:mt-4 lg:mt-0"
           >
             {name}

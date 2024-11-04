@@ -61,12 +61,12 @@ const FeaturedSection = () => {
     ],
   }
 
-  if (isLoading)
+  if (isLoading || !featuredProducts.length)
     return (
       <section
         id="mochi"
         className="bg-white mt-16 sm:mt-28 md:mt-48 
-    lg:mt-4 
+    
     pt-8 pb-4
     relative overflow-hidden 
     text-center mx-auto"
@@ -87,7 +87,7 @@ const FeaturedSection = () => {
                 d="M163.7992706298828,218.10035705566406C171.3321266937256,213.03016713460286,195.3285469309489,187.89725809733073,210.39425659179688,186.7383575439453C225.45996625264485,185.5794569905599,237.86736323038738,210.93190002441406,256.9892272949219,210.93190002441406C276.1110913594564,210.93190002441406,306.07526240030927,185.43459442138672,328.673828125,186.7383575439453C351.27239384969073,188.0421206665039,373.01670364379885,218.4169639078776,396.774169921875,218.9964141845703C420.53163619995115,219.57586446126302,455.9259085083008,191.19176147460936,475.6272277832031,190.3225860595703C495.32854705810547,189.45341064453126,498.3572358703613,212.4611708577474,518.6380004882812,213.6200714111328C538.9187651062011,214.77897196451823,581.0842218017578,197.05645538330077,601.0752563476562,197.4910430908203C621.0662908935547,197.92563079833985,635.6302060953776,213.26612884521484,642.2938842773438,216.30824279785156"
                 fill="none"
                 strokeWidth="8"
-                stroke="#822966"
+                stroke="#292461"
                 strokeLinecap="butt"
                 transform="matrix(1.6764303884620877,0,0,1.6764303884620877,-275.6795431990246,-140.0579031616998)"
               ></path>
@@ -128,8 +128,8 @@ const FeaturedSection = () => {
           <Slider {...settings}>
             <div
               role="status"
-              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+              className="mx-2 xs:mx-4 max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem] 
+        px-2 py-4 xs:p-4 h-[18rem] xs:h-[20rem] lg:h-[25rem] 
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -145,9 +145,7 @@ const FeaturedSection = () => {
                 </svg>
               </div>
               <div className="h-2.5 bg-button rounded-full mb-4"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full "></div>
+              <div className="h-2 bg-button rounded-full mx-auto w-10 mb-2.5"></div>
 
               <div className="w-full h-8 bg-button rounded-full mt-3 sm:mt-8"></div>
 
@@ -156,8 +154,8 @@ const FeaturedSection = () => {
 
             <div
               role="status"
-              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+              className="mx-2 xs:mx-4 max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem] 
+        px-2 py-4 xs:p-4 h-[18rem] xs:h-[20rem] lg:h-[25rem] 
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -173,9 +171,7 @@ const FeaturedSection = () => {
                 </svg>
               </div>
               <div className="h-2.5 bg-button rounded-full mb-4"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full "></div>
+              <div className="h-2 bg-button rounded-full mx-auto w-10 mb-2.5"></div>
 
               <div className="w-full h-8 bg-button rounded-full mt-3 sm:mt-8"></div>
 
@@ -184,8 +180,8 @@ const FeaturedSection = () => {
 
             <div
               role="status"
-              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+              className="mx-2 xs:mx-4 max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem] 
+        px-2 py-4 xs:p-4 h-[18rem] xs:h-[20rem] lg:h-[25rem] 
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -201,9 +197,7 @@ const FeaturedSection = () => {
                 </svg>
               </div>
               <div className="h-2.5 bg-button rounded-full mb-4"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full "></div>
+              <div className="h-2 bg-button rounded-full mx-auto w-10 mb-2.5"></div>
 
               <div className="w-full h-8 bg-button rounded-full mt-3 sm:mt-8"></div>
 
@@ -212,8 +206,8 @@ const FeaturedSection = () => {
 
             <div
               role="status"
-              className="mx-2 xs:mx-4 max-w-[9rem] xs:max-w-[11rem] sm:max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem]
-        px-2 py-4 xs:p-4 h-[22rem] xs:h-[24rem] lg:h-[25rem] 
+              className="mx-2 xs:mx-4 max-w-[12rem] lg:max-w-[14rem] xl:max-w-[15rem] 
+        px-2 py-4 xs:p-4 h-[18rem] xs:h-[20rem] lg:h-[25rem] 
         my-4 border border-button rounded shadow animate-pulse "
             >
               <div className="flex items-center justify-center h-48 mb-4 bg-button rounded">
@@ -229,9 +223,7 @@ const FeaturedSection = () => {
                 </svg>
               </div>
               <div className="h-2.5 bg-button rounded-full mb-4"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full  mb-2.5"></div>
-              <div className="h-2 bg-button rounded-full "></div>
+              <div className="h-2 bg-button rounded-full mx-auto w-10 mb-2.5"></div>
 
               <div className="w-full h-8 bg-button rounded-full mt-3 sm:mt-8"></div>
 
@@ -245,13 +237,13 @@ const FeaturedSection = () => {
   return (
     <section
       id="mochi"
-      className="bg-white mt-16 sm:mt-28 md:mt-48 
-    lg:mt-4 
-    pt-8 pb-4
+      className="bg-white mt-16 sm:mt-28 md:mt-32 lg:mt-24 xl:mt-36
+
+    pt-8 md:pt-12 pb-4
     relative overflow-hidden"
     >
       <h2
-        className="z-50 text-3xl md:text-4xl lg:text-6xl
+        className="z-50 text-3xl md:text-4xl lg:text-5xl
       text-center font-serif text-heading-dark"
       >
         Новинки
@@ -266,7 +258,7 @@ const FeaturedSection = () => {
               d="M163.7992706298828,218.10035705566406C171.3321266937256,213.03016713460286,195.3285469309489,187.89725809733073,210.39425659179688,186.7383575439453C225.45996625264485,185.5794569905599,237.86736323038738,210.93190002441406,256.9892272949219,210.93190002441406C276.1110913594564,210.93190002441406,306.07526240030927,185.43459442138672,328.673828125,186.7383575439453C351.27239384969073,188.0421206665039,373.01670364379885,218.4169639078776,396.774169921875,218.9964141845703C420.53163619995115,219.57586446126302,455.9259085083008,191.19176147460936,475.6272277832031,190.3225860595703C495.32854705810547,189.45341064453126,498.3572358703613,212.4611708577474,518.6380004882812,213.6200714111328C538.9187651062011,214.77897196451823,581.0842218017578,197.05645538330077,601.0752563476562,197.4910430908203C621.0662908935547,197.92563079833985,635.6302060953776,213.26612884521484,642.2938842773438,216.30824279785156"
               fill="none"
               strokeWidth="8"
-              stroke="#822966"
+              stroke="#292461"
               strokeLinecap="butt"
               transform="matrix(1.6764303884620877,0,0,1.6764303884620877,-275.6795431990246,-140.0579031616998)"
             ></path>

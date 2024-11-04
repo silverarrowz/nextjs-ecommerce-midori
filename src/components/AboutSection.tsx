@@ -47,7 +47,7 @@ const AboutSection = () => {
                 <h2 className="text-heading-dark font-bold text-lg mb-2 sm:text-2xl">
                   ЛУЧШИЕ ИНГРЕДИЕНТЫ
                 </h2>
-                <p className="max-w-[80%] leading-none sm:leading-none">
+                <p className="max-w-[80%] leading-tight">
                   Мы сотрудничаем с одним из{' '}
                   <span className="bg-button">лучших поставщиков Японии</span> и делаем наши десерты
                   из самых свежих и высококачественных ингредиентов.
@@ -61,7 +61,7 @@ const AboutSection = () => {
                 <h2 className="text-heading-dark font-bold text-lg mb-2 sm:text-2xl">
                   ВОСХИТИТЕЛЬНЫЙ ВКУС
                 </h2>
-                <p className="max-w-[80%] leading-none sm:leading-none">
+                <p className="max-w-[80%] leading-tight">
                   MiDori вдохновляется традициями японских мастеров, все наши моти{' '}
                   <span className="bg-button-hover">ручной работы</span> и приготовлены по лучшим
                   рецептам, проверенным временем
@@ -73,7 +73,7 @@ const AboutSection = () => {
               <PiPlant className="h-[72px] w-[72px] sm:w-[64px] sm:h-[64px]" />
               <div className="max-w-[74%] sm:max-w-none lg:max-w-[80%] xl:max-w-[84%]">
                 <h2 className="text-heading-dark font-bold text-lg mb-2 sm:text-2xl">100% VEGAN</h2>
-                <p className="max-w-[80%] leading-none sm:leading-none">
+                <p className="max-w-[80%] leading-tight">
                   Мы заботимся о сохранении планеты, в составе наших моти только свежие, органически
                   выращенные рис, фрукты и ягоды
                 </p>
