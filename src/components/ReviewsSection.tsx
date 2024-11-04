@@ -86,7 +86,7 @@ const ReviewsSection = () => {
   const slider = useRef(null)
 
   return (
-    <section className="bg-white min-h-96 pt-2 pb-16">
+    <section id="reviews" className="bg-white min-h-96 pt-2 pb-16">
       <div
         className="z-50 text-3xl md:text-4xl lg:text-6xl
       font-serif mt-6 mb-10 sm:mt-10 sm:mb-16

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Mulish, Bona_Nova, Kurale, Caveat } from 'next/font/google'
+import { Mulish, Caveat } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -15,7 +15,7 @@ const sans = Mulish({
 
 const serif = Caveat({
   weight: ['400'],
-  variable: '--font-bona-nova',
+  variable: '--font-caveat',
   style: ['normal'],
   subsets: ['cyrillic', 'latin'],
 })
