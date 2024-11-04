@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { Product } from '@/app/(payload)/payload-types'
 import { useState } from 'react'
 import { useCart } from '@/app/context/Cart/CartContext'
+import { FaMinus, FaPlus } from 'react-icons/fa'
 
 interface AddToCartButtonProps {
   className?: string
@@ -19,16 +20,38 @@ const AddToCartButton = ({ className, product, showCounter = false }: AddToCartB
 
   return (
     <div className="w-full justify-self-end">
-      <input
-        className={cn(`border-2 border-heading-dark p-2 mb-6 rounded-full  focus:outline-none`, {
+      <div
+        className={cn(`mb-6 flex items-center gap-2`, {
           hidden: !showCounter,
         })}
-        type="number"
-        min={1}
-        max={20}
-        value={quantity}
-        onChange={(e) => setQuantity(parseInt(e.target.value))}
-      />
+      >
+        <button
+          onClick={() => {
+            setQuantity(quantity - 1)
+          }}
+          disabled={quantity === 1}
+          className="text-3xl  leading-3 bg-background-light rounded-full p-2 disabled:bg-slate-200 disabled:text-slate-400"
+        >
+          <FaMinus size={12} />
+        </button>
+        <input
+          className={cn(`border-2 border-heading-dark p-2 rounded-full  focus:outline-none`)}
+          type="number"
+          min={1}
+          max={20}
+          value={quantity}
+          onChange={(e) => setQuantity(parseInt(e.target.value))}
+        />
+        <button
+          onClick={() => {
+            setQuantity(quantity + 1)
+          }}
+          className="text-3xl leading-3 bg-background-light p-2 rounded-full"
+        >
+          <FaPlus size={12} />
+        </button>
+      </div>
+
       <button
         onClick={() => {
           addItemToCart({ product, quantity })
