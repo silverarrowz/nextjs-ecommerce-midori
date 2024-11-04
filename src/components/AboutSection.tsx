@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { GiFruitTree } from 'react-icons/gi'
 import { IoSparklesOutline } from 'react-icons/io5'
@@ -6,7 +5,7 @@ import { PiPlant } from 'react-icons/pi'
 
 const AboutSection = () => {
   return (
-    <section>
+    <section id="about">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-heading bg-background-light">
         <div className="flex flex-col justify-start gap-20 p-10 sm:p-24">
           <div>

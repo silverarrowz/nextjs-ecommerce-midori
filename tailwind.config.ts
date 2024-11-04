@@ -62,7 +62,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-mulish)'],
-        serif: ['var(--font-bona-nova)'],
+        serif: ['var(--font-caveat)'],
       },
       borderRadius: {
         lg: 'var(--radius)',

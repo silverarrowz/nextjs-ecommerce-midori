@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --button: 90 100% 94;
+  --button: 104 100% 78;
   --button-hover: hsl(104, 100%, 90%);
   --heading-dark: #292461;
   --heading: #2d225f;
@@ -24,7 +24,7 @@ body {
 
 @layer base {
   :root {
-    --background: 199 100% 80%;
+    --background: 198 45% 94%;
     --foreground: 245 46% 29%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
