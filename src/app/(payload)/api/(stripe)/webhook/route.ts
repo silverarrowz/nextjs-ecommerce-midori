@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       await payload.update({
         collection: 'users',
         where: {
-          "_parent_id": { equals: session.metadata!.userId }, 
+          id: { equals: session.metadata!.userId }, 
         },
         data: {
           cart: {
