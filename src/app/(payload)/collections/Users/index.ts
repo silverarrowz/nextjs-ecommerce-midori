@@ -12,7 +12,7 @@ export const Users: CollectionConfig = {
     create: () => true,
     read: adminsAndUser,
     update: adminsAndUser,
-    delete: admins,
+    delete: adminsAndUser,
     admin: ({ req: { user } }) => checkRole(['admin'], user!),
   },
   auth: true,

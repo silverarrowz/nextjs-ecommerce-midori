@@ -9,6 +9,7 @@ export async function POST(req: Request) {
   const signature = req.headers.get('stripe-signature') as string
   let event
 
+
   try {
     const rawBody = await req.arrayBuffer()
 
@@ -43,19 +44,13 @@ export async function POST(req: Request) {
     }
 
     try {
-      await payload.update({
-        collection: 'users',
+      await payload.delete({
+        collection: 'users_cart_items',
         where: {
-          id: {
-            equals: session.metadata!.userId,
-          },
-        },
-        data: {
-          cart: {
-            items: [],
-          },
+          "_parent_id": { equals: session.metadata!.userId }, 
         },
       })
+      
     } catch (error) {
       console.error('Error occurred while updating user cart', error)
       return new Response(JSON.stringify({ error: 'Failed to update user cart' }), { status: 500 })

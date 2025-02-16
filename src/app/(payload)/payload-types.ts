@@ -12,7 +12,7 @@
  */
 export type CartItems =
   | {
-      product?: (string | null) | Product;
+      product?: (number | null) | Product;
       quantity?: number | null;
       id?: string | null;
     }[]
@@ -39,12 +39,12 @@ export interface Config {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   roles?: ('customer' | 'admin')[] | null;
   cart?: {
     items?: CartItems;
   };
-  orders?: (string | Order)[] | null;
+  orders?: (number | Order)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -61,14 +61,14 @@ export interface User {
  * via the `definition` "products".
  */
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   description?: string | null;
   price: number;
   amount?: string | null;
-  image?: string | Media | null;
-  relatedProducts?: (string | Product)[] | null;
-  categories?: (string | Category)[] | null;
+  image?: number | Media | null;
+  relatedProducts?: (number | Product)[] | null;
+  categories?: (number | Category)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -77,7 +77,7 @@ export interface Product {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   prefix?: string | null;
   updatedAt: string;
@@ -97,7 +97,7 @@ export interface Media {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: string;
+  id: number;
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -107,11 +107,11 @@ export interface Category {
  * via the `definition` "orders".
  */
 export interface Order {
-  id: string;
-  orderedBy?: (string | null) | User;
+  id: number;
+  orderedBy?: (number | null) | User;
   items?:
     | {
-        product?: (string | null) | Product;
+        product?: (number | null) | Product;
         quantity?: number | null;
         id?: string | null;
       }[]
@@ -126,10 +126,10 @@ export interface Order {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -149,7 +149,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
