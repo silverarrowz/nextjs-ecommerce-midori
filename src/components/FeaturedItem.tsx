@@ -1,4 +1,4 @@
-import { Product } from '@/app/(payload)/payload-types'
+import { Media, Product } from '@/app/(payload)/payload-types'
 import AddToCartButton from './AddToCartButton'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -28,7 +28,7 @@ const FeaturedItem = ({ product }: FeaturedItemProps) => {
         >
           <Image
             fill
-            src={typeof image === 'string' ? image : image!.url!}
+            src={(image as Media).url as string}
             alt={name}
             className="object-contain max-h-full w-full
             "

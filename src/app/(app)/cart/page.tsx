@@ -1,6 +1,6 @@
 'use client'
 
-import { CartItems, Product } from '@/app/(payload)/payload-types'
+import { CartItems, Media, Product } from '@/app/(payload)/payload-types'
 import { useCart } from '@/app/context/Cart/CartContext'
 import { useUser } from '@/app/context/UserContext'
 import LineSvg from '@/lib/LineSvg'
@@ -56,6 +56,8 @@ export default function Page() {
 
                   const { id, name, image, price } = product as Product
 
+                  const imageMedia = image as Media
+
                   return (
                     <div
                       key={id}
@@ -68,7 +70,7 @@ export default function Page() {
                         >
                           <Image
                             fill
-                            src={typeof image === 'string' ? image : image!.url!}
+                            src={imageMedia!.url!}
                             alt={name}
                             className="h-[60px] xs:h-full sm:h-[80px] w-full object-cover"
                           />

@@ -1,4 +1,4 @@
-import { Product } from '@/app/(payload)/payload-types'
+import { Media, Product } from '@/app/(payload)/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 import AddToCartButton from './AddToCartButton'
@@ -16,7 +16,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <Link href={`/product/${product.id}`}>
         <div className="w-full h-48 relative">
           <Image
-            src={typeof product.image === 'string' ? product.image : product.image!.url!}
+            src={(product.image as Media).url as string}
             alt={product.name}
             fill
             className="object-cover absolute top-0 left-0 w-full h-full rounded-lg  

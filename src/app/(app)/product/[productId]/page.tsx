@@ -3,7 +3,7 @@ import configPromise from '@/app/(payload)/payload.config'
 import Link from 'next/link'
 import AddToCartButton from '@/components/AddToCartButton'
 import ProductReel from '@/components/ProductReel'
-import { Product } from '@/app/(payload)/payload-types'
+import { Media, Product } from '@/app/(payload)/payload-types'
 import Image from 'next/image'
 import { Metadata } from 'next'
 
@@ -84,7 +84,7 @@ const Page = async ({ params }: PageProps) => {
         <div className="mx-auto w-full h-[170px] sm:h-[360px] md:h-[300px] md:w-1/2 relative overflow-hidden">
           <Image
             fill
-            src={typeof product.image === 'string' ? product.image : product.image!.url!}
+            src={(product.image as Media).url!}
             alt={product.name}
             className="object-top object-contain"
           />

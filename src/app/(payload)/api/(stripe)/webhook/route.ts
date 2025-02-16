@@ -44,11 +44,16 @@ export async function POST(req: Request) {
     }
 
     try {
-      await payload.delete({
-        collection: 'users_cart_items',
+      await payload.update({
+        collection: 'users',
         where: {
           "_parent_id": { equals: session.metadata!.userId }, 
         },
+        data: {
+          cart: {
+            items: []
+          }
+        }
       })
       
     } catch (error) {

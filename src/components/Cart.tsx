@@ -6,7 +6,7 @@ import { useCart } from '@/app/context/Cart/CartContext'
 import { useUser } from '@/app/context/UserContext'
 
 import { loadStripe } from '@stripe/stripe-js'
-import { CartItems, Product } from '@/app/(payload)/payload-types'
+import { CartItems, Media, Product } from '@/app/(payload)/payload-types'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
@@ -79,7 +79,7 @@ const Cart = () => {
                             >
                               <Image
                                 fill
-                                src={typeof image === 'string' ? image : image!.url!}
+                                src={(image as Media).url as string}
                                 alt={name}
                                 className="h-[60px] xs:h-full sm:h-[80px] w-full object-cover"
                               />

@@ -47,8 +47,8 @@ export async function POST(req: NextRequest) {
       id: user.id,
       data: {
         orders: [
-          ...(user.orders?.map((order) => (typeof order === 'string' ? order : order.id)) || []),
-          order.id as string,
+          ...(user.orders?.map((order) => (typeof order === 'number' ? order : order.id)) || []),
+          order.id as number,
         ],
       },
     })
