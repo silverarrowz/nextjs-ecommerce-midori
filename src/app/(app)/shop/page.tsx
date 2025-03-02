@@ -49,7 +49,7 @@ export default function Page() {
       >
         Каталог
         <LineSvg
-          className="-left-4 -right-4 -bottom-12 lg:-bottom-20 mx-auto"
+          className="-left-4 -right-4 -bottom-12 lg:-bottom-14 mx-auto"
           strokeColor="#292461"
         />
       </h1>

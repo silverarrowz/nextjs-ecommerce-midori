@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --button: 104 100% 78;
+  --button: hsl(104, 100%, 78%);
   --button-hover: hsl(104, 100%, 90%);
   --heading-dark: #292461;
   --heading: #2d225f;

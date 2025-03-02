@@ -17,7 +17,7 @@ const config: Config = {
         'background-light': 'var(--background-light)',
         'background-lightest': 'var(--background-lightest)',
         foreground: 'hsl(var(--foreground))',
-        button: 'hsl(var(--button))',
+        button: 'var(--button)',
         'button-hover': 'var(--button-hover)',
         'heading-dark': 'var(--heading-dark)',
         heading: 'var(--heading)',

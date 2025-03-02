@@ -74,19 +74,19 @@ const Header = () => {
           <li>
             <Link className="relative group hover:opacity-85" href={'/#about'}>
               О нас
-              <LineSvg className="-left-4 -right-4 -bottom-7 hidden group-hover:block" />
+              <LineSvg className="-left-1 right-0 w-[120%] -bottom-5 hidden group-hover:block" />
             </Link>
           </li>
           <li>
             <Link className="relative group hover:opacity-85" href={'/'}>
               Контакты
-              <LineSvg className="-left-2 -right-2 -bottom-8 hidden group-hover:block" />
+              <LineSvg className="left-0 right-0 -bottom-5 hidden group-hover:block" />
             </Link>
           </li>
           <li>
             <Link className="relative group hover:opacity-85" href={'/#reviews'}>
               Отзывы
-              <LineSvg className="-left-2 -right-2 -bottom-7 hidden group-hover:block" />
+              <LineSvg className="left-0 right-0 -bottom-5 hidden group-hover:block" />
             </Link>
           </li>
         </ul>

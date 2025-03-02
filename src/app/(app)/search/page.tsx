@@ -117,7 +117,7 @@ const Page = () => {
         >
           Поиск
           <LineSvg
-            className="-left-4 -right-4 -bottom-10 lg:-bottom-20 mx-auto"
+            className="-left-4 -right-4 -bottom-10 lg:-bottom-14 mx-auto"
             strokeColor="#292461"
           />
         </h1>
@@ -164,7 +164,7 @@ const Page = () => {
         >
           Поиск
           <LineSvg
-            className="-left-4 -right-4 -bottom-10 lg:-bottom-20 mx-auto"
+            className="-left-4 -right-4 -bottom-10 lg:-bottom-14 mx-auto"
             strokeColor="#292461"
           />
         </h1>
@@ -213,7 +213,7 @@ const Page = () => {
       >
         Поиск
         <LineSvg
-          className="-left-4 -right-4 -bottom-10 lg:-bottom-20 mx-auto"
+          className="-left-4 -right-4 -bottom-10 lg:-bottom-14 mx-auto"
           strokeColor="#292461"
         />
       </h1>
