@@ -23,7 +23,7 @@ const IntroSection = () => {
           <div className="flex justify-center gap-3 mt-5">
             <Link
               href={'#mochi'}
-              className="bg-button/60 backdrop-blur-md hover:bg-button-hover flex items-center
+              className="bg-button backdrop-blur-md hover:bg-button-hover flex items-center
                hover:shadow-[inset_0_0_3px_3px_rgba(215,89,161,0.36),0_0_7px_4px_rgba(215,89,161,0.36)]
               leading-3 font-bold
              text-foreground rounded-3xl transition-all duration-300
