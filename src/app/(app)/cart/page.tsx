@@ -40,7 +40,7 @@ export default function Page() {
       w-fit font-serif text-heading-dark text-center relative inline-block"
       >
         Корзина
-        <LineSvg className="-left-4 -right-4 -bottom-12 lg:-bottom-20" strokeColor="#292461" />
+        <LineSvg className="-left-4 -right-4 -bottom-12" strokeColor="#292461" />
       </h1>
       <div>
         {cartIsEmpty ? (
